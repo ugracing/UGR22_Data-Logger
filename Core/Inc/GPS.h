@@ -1,0 +1,1 @@
+int gps_msg_config(const char *nema, int rus1)
