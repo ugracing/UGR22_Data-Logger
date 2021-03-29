@@ -62,6 +62,12 @@ void Error_Handler(void);
 #define RS_485_TX_EN_GPIO_Port GPIOE
 #define RS_485_RX_EN_Pin GPIO_PIN_3
 #define RS_485_RX_EN_GPIO_Port GPIOE
+#define TELE_CE_Pin GPIO_PIN_0
+#define TELE_CE_GPIO_Port GPIOA
+#define TELE_CS_Pin GPIO_PIN_1
+#define TELE_CS_GPIO_Port GPIOA
+#define TELE_IRQ_Pin GPIO_PIN_2
+#define TELE_IRQ_GPIO_Port GPIOA
 #define GPS_RST_Pin GPIO_PIN_10
 #define GPS_RST_GPIO_Port GPIOD
 #define CARD_DET_Pin GPIO_PIN_15
