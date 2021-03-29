@@ -48,6 +48,8 @@ FDCAN_HandleTypeDef hfdcan2;
 
 SD_HandleTypeDef hsd1;
 
+UART_HandleTypeDef huart8;
+
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -58,6 +60,7 @@ static void MX_GPIO_Init(void);
 static void MX_SDMMC1_SD_Init(void);
 static void MX_FDCAN1_Init(void);
 static void MX_FDCAN2_Init(void);
+static void MX_UART8_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -100,6 +103,7 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_FDCAN1_Init();
   MX_FDCAN2_Init();
+  MX_UART8_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -170,10 +174,11 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_FDCAN|RCC_PERIPHCLK_SDMMC
-                              |RCC_PERIPHCLK_USB;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_FDCAN|RCC_PERIPHCLK_UART8
+                              |RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_USB;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
   PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_PLL;
+  PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
@@ -319,6 +324,54 @@ static void MX_SDMMC1_SD_Init(void)
 }
 
 /**
+  * @brief UART8 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_UART8_Init(void)
+{
+
+  /* USER CODE BEGIN UART8_Init 0 */
+
+  /* USER CODE END UART8_Init 0 */
+
+  /* USER CODE BEGIN UART8_Init 1 */
+
+  /* USER CODE END UART8_Init 1 */
+  huart8.Instance = UART8;
+  huart8.Init.BaudRate = 115200;
+  huart8.Init.WordLength = UART_WORDLENGTH_8B;
+  huart8.Init.StopBits = UART_STOPBITS_1;
+  huart8.Init.Parity = UART_PARITY_NONE;
+  huart8.Init.Mode = UART_MODE_TX_RX;
+  huart8.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart8.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart8.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart8.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+  huart8.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetTxFifoThreshold(&huart8, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_SetRxFifoThreshold(&huart8, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_UARTEx_DisableFifoMode(&huart8) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN UART8_Init 2 */
+
+  /* USER CODE END UART8_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -328,11 +381,22 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, RS_485_TX_EN_Pin|RS_485_RX_EN_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : RS_485_TX_EN_Pin RS_485_RX_EN_Pin */
+  GPIO_InitStruct.Pin = RS_485_TX_EN_Pin|RS_485_RX_EN_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 
   /*Configure GPIO pin : CARD_DET_Pin */
   GPIO_InitStruct.Pin = CARD_DET_Pin;

@@ -58,6 +58,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define RS_485_TX_EN_Pin GPIO_PIN_2
+#define RS_485_TX_EN_GPIO_Port GPIOE
+#define RS_485_RX_EN_Pin GPIO_PIN_3
+#define RS_485_RX_EN_GPIO_Port GPIOE
 #define CARD_DET_Pin GPIO_PIN_15
 #define CARD_DET_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
