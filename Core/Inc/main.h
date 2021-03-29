@@ -62,6 +62,8 @@ void Error_Handler(void);
 #define RS_485_TX_EN_GPIO_Port GPIOE
 #define RS_485_RX_EN_Pin GPIO_PIN_3
 #define RS_485_RX_EN_GPIO_Port GPIOE
+#define GPS_RST_Pin GPIO_PIN_10
+#define GPS_RST_GPIO_Port GPIOD
 #define CARD_DET_Pin GPIO_PIN_15
 #define CARD_DET_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
