@@ -1,4 +1,17 @@
 #MicroXplorer Configuration settings - do not modify
+FATFS.BSP.number=1
+FATFS0.BSP.STBoard=false
+FATFS0.BSP.api=Unknown
+FATFS0.BSP.component=
+FATFS0.BSP.condition=
+FATFS0.BSP.i2caddr=0
+FATFS0.BSP.i2creg=
+FATFS0.BSP.instance=PA15 (JTDI)
+FATFS0.BSP.ip=GPIO
+FATFS0.BSP.mode=Input
+FATFS0.BSP.name=Detect_SDIO
+FATFS0.BSP.semaphore=
+FATFS0.BSP.solution=PA15 (JTDI)
 File.Version=6
 KeepUserPlacement=false
 Mcu.Family=STM32H7
