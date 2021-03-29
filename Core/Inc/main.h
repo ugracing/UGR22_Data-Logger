@@ -68,6 +68,10 @@ void Error_Handler(void);
 #define TELE_CS_GPIO_Port GPIOA
 #define TELE_IRQ_Pin GPIO_PIN_2
 #define TELE_IRQ_GPIO_Port GPIOA
+#define LED_Pin GPIO_PIN_0
+#define LED_GPIO_Port GPIOB
+#define BTN_INT_Pin GPIO_PIN_9
+#define BTN_INT_GPIO_Port GPIOE
 #define GPS_RST_Pin GPIO_PIN_10
 #define GPS_RST_GPIO_Port GPIOD
 #define CARD_DET_Pin GPIO_PIN_15
