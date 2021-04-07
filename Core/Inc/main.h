@@ -74,6 +74,8 @@ void Error_Handler(void);
 #define BTN_INT_GPIO_Port GPIOE
 #define GPS_RST_Pin GPIO_PIN_10
 #define GPS_RST_GPIO_Port GPIOD
+#define GPS_INT_Pin GPIO_PIN_11
+#define GPS_INT_GPIO_Port GPIOD
 #define CARD_DET_Pin GPIO_PIN_15
 #define CARD_DET_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */

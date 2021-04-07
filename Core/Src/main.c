@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <GPS.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -34,6 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+#define BUFFLENGTH 70
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -74,7 +75,7 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+char rxBuf[BUFFLENGTH];
 /* USER CODE END 0 */
 
 /**
@@ -115,6 +116,39 @@ int main(void)
   MX_USART3_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_SET);
+  HAL_Delay(100);
+
+  HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
+
+  uint16_t measRate = 100;
+  uint16_t navRate = 1;
+  uint16_t timeRef = 0;
+
+  gps_rate_config(&huart3, measRate, navRate, timeRef);
+
+    gps_msg_config(&huart3, "DTM", 0);//ERROR
+    gps_msg_config(&huart3, "GAQ", 0);
+    gps_msg_config(&huart3, "GBQ", 0);
+    gps_msg_config(&huart3, "GBS", 0);//ERROR
+    gps_msg_config(&huart3, "GGA", 0);//ERROR
+    gps_msg_config(&huart3, "GLL", 0);//ERROR
+    gps_msg_config(&huart3, "GLQ", 0);
+    gps_msg_config(&huart3, "GNQ", 0);
+    gps_msg_config(&huart3, "GNS", 0);//ERROR
+    gps_msg_config(&huart3, "GPQ", 0);
+    gps_msg_config(&huart3, "GRS", 0);//ERROR
+    gps_msg_config(&huart3, "GSA", 0);//ERROR
+    gps_msg_config(&huart3, "GST", 0);//ERROR
+    gps_msg_config(&huart3, "GSV", 0);//ERROR
+    gps_msg_config(&huart3, "RLM", 0);
+    gps_msg_config(&huart3, "RMC", 1);//ERROR
+    gps_msg_config(&huart3, "TXT", 0);
+    gps_msg_config(&huart3, "VLW", 0);//ERROR
+    gps_msg_config(&huart3, "VTG", 0);//ERROR
+    gps_msg_config(&huart3, "ZDA", 0);//ERROR
+
 
   /* USER CODE END 2 */
 
@@ -122,8 +156,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	  HAL_Delay(1000);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -525,7 +558,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, GPS_RST_Pin|GPS_INT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : RS_485_TX_EN_Pin RS_485_RX_EN_Pin */
   GPIO_InitStruct.Pin = RS_485_TX_EN_Pin|RS_485_RX_EN_Pin;
@@ -560,12 +593,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(BTN_INT_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : GPS_RST_Pin */
-  GPIO_InitStruct.Pin = GPS_RST_Pin;
+  /*Configure GPIO pins : GPS_RST_Pin GPS_INT_Pin */
+  GPIO_InitStruct.Pin = GPS_RST_Pin|GPS_INT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPS_RST_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pin : CARD_DET_Pin */
   GPIO_InitStruct.Pin = CARD_DET_Pin;
@@ -576,7 +609,21 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(huart);
 
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_UART_RxCpltCallback can be implemented in the user file.
+   */
+  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+  /*
+  for(int i=0; i<BUFFLENGTH; i++){
+	  printf("%c", rxBuf[i]);
+  }
+	*/
+}
 /* USER CODE END 4 */
 
 /**
