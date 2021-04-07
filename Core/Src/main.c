@@ -74,7 +74,9 @@ static void MX_SPI1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+FATFS myFATAFS;
+FIL myFILE;
+UINT testByte;
 /* USER CODE END 0 */
 
 /**
@@ -115,15 +117,23 @@ int main(void)
   MX_USART3_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
+  if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
+  	  char myPath[] = "Data.csv\0";
+  	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+  	  char myData[] = "This is some data. This is some more data";
+  	  f_write(&myFILE, myData, sizeof(myData), &testByte);
+  	  f_close(&myFILE);
+  	  for(int i=0; i<3; i++){
+  		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+  		HAL_Delay(1000);
+  	  }
+    }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
