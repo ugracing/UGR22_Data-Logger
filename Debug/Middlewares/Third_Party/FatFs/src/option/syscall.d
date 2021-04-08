@@ -43,7 +43,7 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h \
- ../FATFS/Target/bsp_driver_sd.h ../FATFS/Target/fatfs_platform.h
+ ../FATFS/Target/bsp_driver_sd.h
 
 ../Middlewares/Third_Party/FatFs/src/option/../ff.h:
 
@@ -134,5 +134,3 @@ Middlewares/Third_Party/FatFs/src/option/syscall.o: \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h:
 
 ../FATFS/Target/bsp_driver_sd.h:
-
-../FATFS/Target/fatfs_platform.h:
