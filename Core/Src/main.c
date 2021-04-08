@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -69,7 +69,15 @@ static void MX_UART8_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
-
+int _write(int file, char *ptr, int len)
+{
+  /* Implement your write code here, this is used by puts and printf for example */
+  int i=0;
+  for(i=0 ; i<len ; i++)
+    ITM_SendChar((*ptr++));
+  return len;
+}
+uint8_t count = 0;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -86,7 +94,7 @@ UINT testByte;
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	printf("Starting");
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -118,22 +126,41 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
-  	  char myPath[] = "Data.csv\0";
+	  printf("Success :)\n");
+  	  char myPath[] = "threemhz.csv\0";
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
   	  char myData[] = "This is some data. This is some more data";
   	  f_write(&myFILE, myData, sizeof(myData), &testByte);
   	  f_close(&myFILE);
-  	  for(int i=0; i<3; i++){
+  	  for(int i=0; i<10; i++){
+  		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+  		HAL_Delay(1000);
   		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
   		HAL_Delay(1000);
   	  }
     }
+  else{
+	  printf("Failed :(\n");
+	  for(int i=0; i<10; i++){
+	    		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	    		HAL_Delay(500);
+	    		HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	    		HAL_Delay(500);
+	    	  }
+
+
+  }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  printf("Loop\n\r");
+	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  HAL_Delay(1000);
+	  count++;
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -159,6 +186,9 @@ void SystemClock_Config(void)
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
+  /** Macro to configure the PLL clock source
+  */
+  __HAL_RCC_PLL_PLLSOURCE_CONFIG(RCC_PLLSOURCE_HSE);
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -168,12 +198,12 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 5;
-  RCC_OscInitStruct.PLL.PLLN = 48;
+  RCC_OscInitStruct.PLL.PLLM = 2;
+  RCC_OscInitStruct.PLL.PLLN = 23;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 5;
+  RCC_OscInitStruct.PLL.PLLQ = 6;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
   RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -200,7 +230,15 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3|RCC_PERIPHCLK_FDCAN
                               |RCC_PERIPHCLK_UART8|RCC_PERIPHCLK_SPI1
                               |RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_USB;
-  PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
+  PeriphClkInitStruct.PLL2.PLL2M = 2;
+  PeriphClkInitStruct.PLL2.PLL2N = 12;
+  PeriphClkInitStruct.PLL2.PLL2P = 2;
+  PeriphClkInitStruct.PLL2.PLL2Q = 2;
+  PeriphClkInitStruct.PLL2.PLL2R = 50;
+  PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
+  PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
+  PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
+  PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
   PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL;
   PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_HSE;
   PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
