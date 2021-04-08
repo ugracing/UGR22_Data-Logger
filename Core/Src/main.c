@@ -25,6 +25,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <GPS.h>
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -118,6 +119,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
   HAL_Delay(100);
 
   HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
@@ -125,7 +127,7 @@ int main(void)
   uint16_t measRate = 100;
   uint16_t navRate = 1;
   uint16_t timeRef = 0;
-
+/*
   gps_rate_config(&huart3, measRate, navRate, timeRef);
 
     gps_msg_config(&huart3, "DTM", 0);//ERROR
@@ -149,14 +151,22 @@ int main(void)
     gps_msg_config(&huart3, "VTG", 0);//ERROR
     gps_msg_config(&huart3, "ZDA", 0);//ERROR
 
-
+*/
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  uint8_t buffer[] = "Hello, World!\r\n";
 
+	  HAL_Delay(1000);
+	  //if(HAL_GPIO_ReadPin(BTN_INT_GPIO_Port, BTN_INT_Pin)){
+		  //HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
+	  //}
+	  //else{
+		  //HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_RESET);
+	  //}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -618,6 +628,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
             the HAL_UART_RxCpltCallback can be implemented in the user file.
    */
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+  CDC_Transmit_FS(rxBuf, sizeof(rxBuf));
   /*
   for(int i=0; i<BUFFLENGTH; i++){
 	  printf("%c", rxBuf[i]);
