@@ -738,104 +738,103 @@ static void MX_FDCAN1_Init(void)
  8000888:	4b24      	ldr	r3, [pc, #144]	; (800091c <MX_FDCAN1_Init+0xc4>)
  800088a:	2201      	movs	r2, #1
  800088c:	619a      	str	r2, [r3, #24]
-  hfdcan1.Init.NominalTimeSeg1 = 12;
+  hfdcan1.Init.NominalTimeSeg1 = 256;
  800088e:	4b23      	ldr	r3, [pc, #140]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 8000890:	220c      	movs	r2, #12
- 8000892:	61da      	str	r2, [r3, #28]
-  hfdcan1.Init.NominalTimeSeg2 = 12;
- 8000894:	4b21      	ldr	r3, [pc, #132]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 8000896:	220c      	movs	r2, #12
- 8000898:	621a      	str	r2, [r3, #32]
+ 8000890:	f44f 7280 	mov.w	r2, #256	; 0x100
+ 8000894:	61da      	str	r2, [r3, #28]
+  hfdcan1.Init.NominalTimeSeg2 = 128;
+ 8000896:	4b21      	ldr	r3, [pc, #132]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 8000898:	2280      	movs	r2, #128	; 0x80
+ 800089a:	621a      	str	r2, [r3, #32]
   hfdcan1.Init.DataPrescaler = 1;
- 800089a:	4b20      	ldr	r3, [pc, #128]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 800089c:	2201      	movs	r2, #1
- 800089e:	625a      	str	r2, [r3, #36]	; 0x24
+ 800089c:	4b1f      	ldr	r3, [pc, #124]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 800089e:	2201      	movs	r2, #1
+ 80008a0:	625a      	str	r2, [r3, #36]	; 0x24
   hfdcan1.Init.DataSyncJumpWidth = 1;
- 80008a0:	4b1e      	ldr	r3, [pc, #120]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008a2:	2201      	movs	r2, #1
- 80008a4:	629a      	str	r2, [r3, #40]	; 0x28
-  hfdcan1.Init.DataTimeSeg1 = 4;
- 80008a6:	4b1d      	ldr	r3, [pc, #116]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008a8:	2204      	movs	r2, #4
- 80008aa:	62da      	str	r2, [r3, #44]	; 0x2c
+ 80008a2:	4b1e      	ldr	r3, [pc, #120]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008a4:	2201      	movs	r2, #1
+ 80008a6:	629a      	str	r2, [r3, #40]	; 0x28
+  hfdcan1.Init.DataTimeSeg1 = 32;
+ 80008a8:	4b1c      	ldr	r3, [pc, #112]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008aa:	2220      	movs	r2, #32
+ 80008ac:	62da      	str	r2, [r3, #44]	; 0x2c
   hfdcan1.Init.DataTimeSeg2 = 4;
- 80008ac:	4b1b      	ldr	r3, [pc, #108]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008ae:	2204      	movs	r2, #4
- 80008b0:	631a      	str	r2, [r3, #48]	; 0x30
+ 80008ae:	4b1b      	ldr	r3, [pc, #108]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008b0:	2204      	movs	r2, #4
+ 80008b2:	631a      	str	r2, [r3, #48]	; 0x30
   hfdcan1.Init.MessageRAMOffset = 0;
- 80008b2:	4b1a      	ldr	r3, [pc, #104]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008b4:	2200      	movs	r2, #0
- 80008b6:	635a      	str	r2, [r3, #52]	; 0x34
+ 80008b4:	4b19      	ldr	r3, [pc, #100]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008b6:	2200      	movs	r2, #0
+ 80008b8:	635a      	str	r2, [r3, #52]	; 0x34
   hfdcan1.Init.StdFiltersNbr = 2;
- 80008b8:	4b18      	ldr	r3, [pc, #96]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008ba:	2202      	movs	r2, #2
- 80008bc:	639a      	str	r2, [r3, #56]	; 0x38
+ 80008ba:	4b18      	ldr	r3, [pc, #96]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008bc:	2202      	movs	r2, #2
+ 80008be:	639a      	str	r2, [r3, #56]	; 0x38
   hfdcan1.Init.ExtFiltersNbr = 2;
- 80008be:	4b17      	ldr	r3, [pc, #92]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008c0:	2202      	movs	r2, #2
- 80008c2:	63da      	str	r2, [r3, #60]	; 0x3c
+ 80008c0:	4b16      	ldr	r3, [pc, #88]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008c2:	2202      	movs	r2, #2
+ 80008c4:	63da      	str	r2, [r3, #60]	; 0x3c
   hfdcan1.Init.RxFifo0ElmtsNbr = 10;
- 80008c4:	4b15      	ldr	r3, [pc, #84]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008c6:	220a      	movs	r2, #10
- 80008c8:	641a      	str	r2, [r3, #64]	; 0x40
+ 80008c6:	4b15      	ldr	r3, [pc, #84]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008c8:	220a      	movs	r2, #10
+ 80008ca:	641a      	str	r2, [r3, #64]	; 0x40
   hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_64;
- 80008ca:	4b14      	ldr	r3, [pc, #80]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008cc:	2212      	movs	r2, #18
- 80008ce:	645a      	str	r2, [r3, #68]	; 0x44
+ 80008cc:	4b13      	ldr	r3, [pc, #76]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008ce:	2212      	movs	r2, #18
+ 80008d0:	645a      	str	r2, [r3, #68]	; 0x44
   hfdcan1.Init.RxFifo1ElmtsNbr = 0;
- 80008d0:	4b12      	ldr	r3, [pc, #72]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008d2:	2200      	movs	r2, #0
- 80008d4:	649a      	str	r2, [r3, #72]	; 0x48
+ 80008d2:	4b12      	ldr	r3, [pc, #72]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008d4:	2200      	movs	r2, #0
+ 80008d6:	649a      	str	r2, [r3, #72]	; 0x48
   hfdcan1.Init.RxFifo1ElmtSize = FDCAN_DATA_BYTES_8;
- 80008d6:	4b11      	ldr	r3, [pc, #68]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008d8:	2204      	movs	r2, #4
- 80008da:	64da      	str	r2, [r3, #76]	; 0x4c
+ 80008d8:	4b10      	ldr	r3, [pc, #64]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008da:	2204      	movs	r2, #4
+ 80008dc:	64da      	str	r2, [r3, #76]	; 0x4c
   hfdcan1.Init.RxBuffersNbr = 0;
- 80008dc:	4b0f      	ldr	r3, [pc, #60]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008de:	2200      	movs	r2, #0
- 80008e0:	651a      	str	r2, [r3, #80]	; 0x50
+ 80008de:	4b0f      	ldr	r3, [pc, #60]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008e0:	2200      	movs	r2, #0
+ 80008e2:	651a      	str	r2, [r3, #80]	; 0x50
   hfdcan1.Init.RxBufferSize = FDCAN_DATA_BYTES_8;
- 80008e2:	4b0e      	ldr	r3, [pc, #56]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008e4:	2204      	movs	r2, #4
- 80008e6:	655a      	str	r2, [r3, #84]	; 0x54
+ 80008e4:	4b0d      	ldr	r3, [pc, #52]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008e6:	2204      	movs	r2, #4
+ 80008e8:	655a      	str	r2, [r3, #84]	; 0x54
   hfdcan1.Init.TxEventsNbr = 0;
- 80008e8:	4b0c      	ldr	r3, [pc, #48]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008ea:	2200      	movs	r2, #0
- 80008ec:	659a      	str	r2, [r3, #88]	; 0x58
+ 80008ea:	4b0c      	ldr	r3, [pc, #48]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008ec:	2200      	movs	r2, #0
+ 80008ee:	659a      	str	r2, [r3, #88]	; 0x58
   hfdcan1.Init.TxBuffersNbr = 0;
- 80008ee:	4b0b      	ldr	r3, [pc, #44]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008f0:	2200      	movs	r2, #0
- 80008f2:	65da      	str	r2, [r3, #92]	; 0x5c
+ 80008f0:	4b0a      	ldr	r3, [pc, #40]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008f2:	2200      	movs	r2, #0
+ 80008f4:	65da      	str	r2, [r3, #92]	; 0x5c
   hfdcan1.Init.TxFifoQueueElmtsNbr = 0;
- 80008f4:	4b09      	ldr	r3, [pc, #36]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008f6:	2200      	movs	r2, #0
- 80008f8:	661a      	str	r2, [r3, #96]	; 0x60
+ 80008f6:	4b09      	ldr	r3, [pc, #36]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008f8:	2200      	movs	r2, #0
+ 80008fa:	661a      	str	r2, [r3, #96]	; 0x60
   hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
- 80008fa:	4b08      	ldr	r3, [pc, #32]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 80008fc:	2200      	movs	r2, #0
- 80008fe:	665a      	str	r2, [r3, #100]	; 0x64
+ 80008fc:	4b07      	ldr	r3, [pc, #28]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 80008fe:	2200      	movs	r2, #0
+ 8000900:	665a      	str	r2, [r3, #100]	; 0x64
   hfdcan1.Init.TxElmtSize = FDCAN_DATA_BYTES_8;
- 8000900:	4b06      	ldr	r3, [pc, #24]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 8000902:	2204      	movs	r2, #4
- 8000904:	669a      	str	r2, [r3, #104]	; 0x68
+ 8000902:	4b06      	ldr	r3, [pc, #24]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 8000904:	2204      	movs	r2, #4
+ 8000906:	669a      	str	r2, [r3, #104]	; 0x68
   if (HAL_FDCAN_Init(&hfdcan1) != HAL_OK)
- 8000906:	4805      	ldr	r0, [pc, #20]	; (800091c <MX_FDCAN1_Init+0xc4>)
- 8000908:	f002 fd42 	bl	8003390 <HAL_FDCAN_Init>
- 800090c:	4603      	mov	r3, r0
- 800090e:	2b00      	cmp	r3, #0
- 8000910:	d001      	beq.n	8000916 <MX_FDCAN1_Init+0xbe>
+ 8000908:	4804      	ldr	r0, [pc, #16]	; (800091c <MX_FDCAN1_Init+0xc4>)
+ 800090a:	f002 fd41 	bl	8003390 <HAL_FDCAN_Init>
+ 800090e:	4603      	mov	r3, r0
+ 8000910:	2b00      	cmp	r3, #0
+ 8000912:	d001      	beq.n	8000918 <MX_FDCAN1_Init+0xc0>
   {
     Error_Handler();
- 8000912:	f000 fae5 	bl	8000ee0 <Error_Handler>
+ 8000914:	f000 fae4 	bl	8000ee0 <Error_Handler>
   }
   /* USER CODE BEGIN FDCAN1_Init 2 */
 
   /* USER CODE END FDCAN1_Init 2 */
 
 }
- 8000916:	bf00      	nop
- 8000918:	bd80      	pop	{r7, pc}
- 800091a:	bf00      	nop
+ 8000918:	bf00      	nop
+ 800091a:	bd80      	pop	{r7, pc}
  800091c:	2400038c 	.word	0x2400038c
  8000920:	4000a000 	.word	0x4000a000
 
