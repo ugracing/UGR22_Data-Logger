@@ -1,4 +1,4 @@
-main.c:86:5:main	4336	static
+main.c:86:5:main	20720	static
 main.c:158:6:SystemClock_Config	312	static
 main.c:245:13:MX_FDCAN1_Init	8	static
 main.c:298:13:MX_FDCAN2_Init	8	static

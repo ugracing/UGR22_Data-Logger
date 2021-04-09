@@ -119,21 +119,21 @@ int main(void)
   /* USER CODE BEGIN 2 */
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "test.csv\0";
+  	  char myPath[] = "test50.csv\0";
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
-  	  char myData[4096];
-  	  for(int i = 0; i<4096; i++){
+  	  char myData[20480];
+  	  for(int i = 0; i<20480; i++){
   		myData[i] = 'A';
   	  }
   	 int start = HAL_GetTick();
-  	for(int i = 0; i<64000; i++){
+  	for(int i = 0; i<12800; i++){
   		f_write(&myFILE, myData, sizeof(myData), &testByte);
   	  	  }
   	int end = HAL_GetTick();
   	int duration = end - start;
   	char myTime[200];
   	sprintf(myTime, "\r%i", duration);
-  	f_write(&myFILE, myTime, sizeof(myTime), &testByte);
+  	f_write(&myFILE, myTime, strlen(myTime), &testByte);
   	  f_close(&myFILE);
     }
   /* USER CODE END 2 */
@@ -363,7 +363,7 @@ static void MX_SDMMC1_SD_Init(void)
   hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
   hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
   hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_ENABLE;
-  hsd1.Init.ClockDiv = 1;
+  hsd1.Init.ClockDiv = 0;
   hsd1.Init.TranceiverPresent = SDMMC_TRANSCEIVER_NOT_PRESENT;
   /* USER CODE BEGIN SDMMC1_Init 2 */
 
