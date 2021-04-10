@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include <stdint.h>
 #include "fatfs.h"
 #include "usb_device.h"
 
@@ -29,6 +30,54 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+typedef union {
+  uint64_t value;
+  struct {
+    uint32_t low;
+    uint32_t high;
+  };
+  struct {
+    uint16_t s0;
+    uint16_t s1;
+    uint16_t s2;
+    uint16_t s3;
+  };
+  uint8_t bytes[8];
+} BytesUnion8;
+
+typedef struct{
+        uint32_t id;        // EID if ide set, SID otherwise
+        uint8_t extended;   // Extended ID flag
+        uint8_t length;     // Number of data bytes
+        BytesUnion8 data;    // 64 bits - lots of ways to access it.
+} CAN_FRAME;
+
+typedef union {
+  uint64_t longs[8];
+  uint32_t ints[16];
+  uint16_t shorts[32];
+  uint8_t bytes[64];
+} BytesUnion64;
+
+typedef struct{
+        uint32_t id;        // EID if ide set, SID otherwise
+        uint8_t extended;   // Extended ID flag
+        uint8_t length;     // Number of data bytes
+        BytesUnion64 data;    // 64 bits - lots of ways to access it.
+} CAN_FD_FRAME;
+
+typedef union{
+        char DataBuff[40960];
+        struct{
+          char DataBuff1[20480];
+          char DataBuff2[20480];
+        };
+}Buff;
+
+typedef struct{
+  Buff Data;
+  UINT counter;
+}DataBuff;
 
 /* USER CODE END PTD */
 
@@ -54,6 +103,9 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart3;
 DMA_HandleTypeDef hdma_usart3_rx;
 
+DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
+CAN_FRAME CanFrame;
+CAN_FD_FRAME CanFDFrame;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -68,6 +120,8 @@ static void MX_FDCAN2_Init(void);
 static void MX_UART8_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
+
+int WriteToBuff(char *, int);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -76,6 +130,9 @@ static void MX_SPI1_Init(void);
 /* USER CODE BEGIN 0 */
 FATFS myFATAFS;
 FIL myFILE;
+FIL Config;
+UINT ConfByteR;
+UINT ConfByteW;
 UINT testByte;
 /* USER CODE END 0 */
 
@@ -83,8 +140,7 @@ UINT testByte;
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void){
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -119,29 +175,46 @@ int main(void)
   /* USER CODE BEGIN 2 */
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "test50.csv\0";
+  	  char myPath[] = "Data.csv\0";
+      char ConfigPath[] ="Config.csv\0";
+      char ConfigParams[1000];
+
+      //Tries to open config File
+      if(f_open(&Config, ConfigPath, FA_READ) == FR_NO_FILE){
+        //If file doesnt exist creates a file using hard coded defualts and passes those to internal config array
+        f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
+
+        sprintf(ConfigParams, "ID,Device,Bytes,Type(Hz),Description\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,0.20,uint32_t,HIGH:FileNO LOW:millis,\n");
+
+        f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
+      }else{
+        //If file does exist reads in config parameters to internal config array
+        f_read(&Config, ConfigParams, strlen(ConfigParams), &ConfByteR);
+      }
+
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
-  	  char myData[20480];
-  	  for(int i = 0; i<20480; i++){
-  		myData[i] = 'A';
-  	  }
-  	 int start = HAL_GetTick();
-  	for(int i = 0; i<12800; i++){
-  		f_write(&myFILE, myData, sizeof(myData), &testByte);
-  	  	  }
-  	int end = HAL_GetTick();
-  	int duration = end - start;
-  	char myTime[200];
-  	sprintf(myTime, "\r%i", duration);
-  	f_write(&myFILE, myTime, strlen(myTime), &testByte);
-  	  f_close(&myFILE);
+
+  	  //write speed test
+  	  /*for(int i = 0; i<20480; i++){
+  		    DataBuff[i] = 'A';
+  	    }
+  	    int start = HAL_GetTick();
+  	    for(int i = 0; i<12800; i++){
+  		    f_write(&myFILE, DataBuff, sizeof(DataBuff), &testByte);
+        }
+  	    int end = HAL_GetTick();
+  	    int duration = end - start;
+  	    char myTime[200];
+  	    sprintf(myTime, "\r%i", duration);
+  	    f_write(&myFILE, myTime, strlen(myTime), &testByte);*/
+      f_close(&myFILE);
     }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1){
 	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
@@ -151,6 +224,23 @@ int main(void)
   /* USER CODE END 3 */
 }
 
+int WriteToBuff(char Data[], int len){
+  if(len = 0 || len >= 20480){
+    return 3; //Dude dont try and break it
+  }
+  if(DataBuffer.counter < 20480 && DataBuffer.counter + len+1 >= 20480){
+    DataBuffer.counter = 20480;
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+    return 1; //buffer 1 is full
+  }
+  if(DataBuffer.counter + len+1 >= 40960){
+    DataBuffer.counter = 0;
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+    return 2; //buffer 2 is full
+  }
+  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+  return 0;
+}
 /**
   * @brief System Clock Configuration
   * @retval None
