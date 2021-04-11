@@ -574,7 +574,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, GPS_RST_Pin|GPS_INT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : RS_485_TX_EN_Pin RS_485_RX_EN_Pin */
   GPIO_InitStruct.Pin = RS_485_TX_EN_Pin|RS_485_RX_EN_Pin;
