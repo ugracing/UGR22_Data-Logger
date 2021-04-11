@@ -71,7 +71,14 @@ static void MX_UART8_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
-
+int _write(int file, char *ptr, int len)
+{
+  /* Implement your write code here, this is used by puts and printf for example */
+  int i=0;
+  for(i=0 ; i<len ; i++)
+    ITM_SendChar((*ptr++));
+  return len;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -120,14 +127,14 @@ int main(void)
   HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_SET);
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);
-  HAL_Delay(100);
+
 
   HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
-
+  HAL_Delay(1000);
   uint16_t measRate = 100;
   uint16_t navRate = 1;
   uint16_t timeRef = 0;
-/*
+
   gps_rate_config(&huart3, measRate, navRate, timeRef);
 
     gps_msg_config(&huart3, "DTM", 0);//ERROR
@@ -151,16 +158,15 @@ int main(void)
     gps_msg_config(&huart3, "VTG", 0);//ERROR
     gps_msg_config(&huart3, "ZDA", 0);//ERROR
 
-*/
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  uint8_t buffer[] = "Hello, World!\r\n";
 
-	  HAL_Delay(1000);
+
 	  //if(HAL_GPIO_ReadPin(BTN_INT_GPIO_Port, BTN_INT_Pin)){
 		  //HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
 	  //}
@@ -628,7 +634,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
             the HAL_UART_RxCpltCallback can be implemented in the user file.
    */
   HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-  CDC_Transmit_FS(rxBuf, sizeof(rxBuf));
+  //CDC_Transmit_FS(rxBuf, sizeof(rxBuf));
+  for(int i=0; i<BUFFLENGTH; i++){
+	  printf("%c",rxBuf[i]);
+  }
+
   /*
   for(int i=0; i<BUFFLENGTH; i++){
 	  printf("%c", rxBuf[i]);
