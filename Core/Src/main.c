@@ -184,7 +184,7 @@ int main(void){
         //If file doesnt exist creates a file using hard coded defualts and passes those to internal config array
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
-        sprintf(ConfigParams, "ID,Device,Bytes,Type(Hz),Description\n");
+        sprintf(ConfigParams, "ID,Device,Bytes,Rate(HZ),Type,Description\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,0.20,uint32_t,HIGH:FileNO LOW:millis,\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
