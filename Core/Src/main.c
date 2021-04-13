@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <stdint.h>
 #include "fatfs.h"
 #include "usb_device.h"
 
@@ -67,10 +66,10 @@ typedef struct{
 } CAN_FD_FRAME;
 
 typedef union{
-        char DataBuff[40960];
+        char DataBuff[262144];
         struct{
-          char DataBuff1[20480];
-          char DataBuff2[20480];
+          char DataBuff1[131072];
+          char DataBuff2[131072];
         };
 }Buff;
 
@@ -103,7 +102,6 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart3;
 DMA_HandleTypeDef hdma_usart3_rx;
 
-
 /* USER CODE BEGIN PV */
 DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
 CAN_FRAME CanFrame;
@@ -120,8 +118,6 @@ static void MX_FDCAN2_Init(void);
 static void MX_UART8_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
-
-
 /* USER CODE BEGIN PFP */
 int WriteToBuff(char *, int);
 /* USER CODE END PFP */
@@ -140,7 +136,8 @@ UINT testByte;
   * @brief  The application entry point.
   * @retval int
   */
-int main(void){
+int main(void)
+{
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -175,7 +172,7 @@ int main(void){
   /* USER CODE BEGIN 2 */
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "1buff.csv\0";
+  	  char myPath[] = "moon.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -196,13 +193,13 @@ int main(void){
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
 
   	  //write speed test
-  	  	for(int i = 0; i<20480; i++){
+  	  	for(int i = 0; i<131072; i++){
   		    DataBuffer.Data.DataBuff1[i] = 'A';
   	    }
   	    int start = HAL_GetTick();
-  	    //for(int i = 0; i<1; i++){
+  	    for(int i = 0; i<2048; i++){
   		f_write(&myFILE, DataBuffer.Data.DataBuff1, sizeof(DataBuffer.Data.DataBuff1), &testByte);
-        //}
+        }
   	    int end = HAL_GetTick();
   	    int duration = end - start;
   	    char myTime[200];
@@ -223,7 +220,6 @@ int main(void){
   }
   /* USER CODE END 3 */
 }
-
 
 /**
   * @brief System Clock Configuration
