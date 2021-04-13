@@ -103,11 +103,11 @@ UART_HandleTypeDef huart8;
 UART_HandleTypeDef huart3;
 DMA_HandleTypeDef hdma_usart3_rx;
 
+
+/* USER CODE BEGIN PV */
 DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
 CAN_FRAME CanFrame;
 CAN_FD_FRAME CanFDFrame;
-/* USER CODE BEGIN PV */
-
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -121,9 +121,9 @@ static void MX_UART8_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
 
-int WriteToBuff(char *, int);
-/* USER CODE BEGIN PFP */
 
+/* USER CODE BEGIN PFP */
+int WriteToBuff(char *, int);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -175,7 +175,7 @@ int main(void){
   /* USER CODE BEGIN 2 */
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "Data.csv\0";
+  	  char myPath[] = "1buff.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -192,22 +192,22 @@ int main(void){
         //If file does exist reads in config parameters to internal config array
         f_read(&Config, ConfigParams, strlen(ConfigParams), &ConfByteR);
       }
-
+      f_close(&Config);
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
 
   	  //write speed test
-  	  /*for(int i = 0; i<20480; i++){
-  		    DataBuff[i] = 'A';
+  	  	for(int i = 0; i<20480; i++){
+  		    DataBuffer.Data.DataBuff1[i] = 'A';
   	    }
   	    int start = HAL_GetTick();
-  	    for(int i = 0; i<12800; i++){
-  		    f_write(&myFILE, DataBuff, sizeof(DataBuff), &testByte);
-        }
+  	    //for(int i = 0; i<1; i++){
+  		f_write(&myFILE, DataBuffer.Data.DataBuff1, sizeof(DataBuffer.Data.DataBuff1), &testByte);
+        //}
   	    int end = HAL_GetTick();
   	    int duration = end - start;
   	    char myTime[200];
   	    sprintf(myTime, "\r%i", duration);
-  	    f_write(&myFILE, myTime, strlen(myTime), &testByte);*/
+  	    f_write(&myFILE, myTime, strlen(myTime), &testByte);
       f_close(&myFILE);
     }
   /* USER CODE END 2 */
@@ -224,23 +224,7 @@ int main(void){
   /* USER CODE END 3 */
 }
 
-int WriteToBuff(char Data[], int len){
-  if(len = 0 || len >= 20480){
-    return 3; //Dude dont try and break it
-  }
-  if(DataBuffer.counter < 20480 && DataBuffer.counter + len+1 >= 20480){
-    DataBuffer.counter = 20480;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-    return 1; //buffer 1 is full
-  }
-  if(DataBuffer.counter + len+1 >= 40960){
-    DataBuffer.counter = 0;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-    return 2; //buffer 2 is full
-  }
-  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-  return 0;
-}
+
 /**
   * @brief System Clock Configuration
   * @retval None
@@ -699,7 +683,23 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+int WriteToBuff(char Data[], int len){
+  if(len = 0 || len >= 20480){
+    return 3; //Dude dont try and break it
+  }
+  if(DataBuffer.counter < 20480 && DataBuffer.counter + len+1 >= 20480){
+    DataBuffer.counter = 20480;
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+    return 1; //buffer 1 is full
+  }
+  if(DataBuffer.counter + len+1 >= 40960){
+    DataBuffer.counter = 0;
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+    return 2; //buffer 2 is full
+  }
+  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
+  return 0;
+}
 /* USER CODE END 4 */
 
 /**
