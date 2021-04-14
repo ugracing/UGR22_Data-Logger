@@ -24,7 +24,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "string.h"
+#define Bufflength 131072
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,10 +67,10 @@ typedef struct{
 } CAN_FD_FRAME;
 
 typedef union{
-        char DataBuff[262144];
+        char DataBuff[2*Bufflength];
         struct{
-          char DataBuff1[131072];
-          char DataBuff2[131072];
+          char DataBuff1[Bufflength];
+          char DataBuff2[Bufflength];
         };
 }Buff;
 
@@ -680,21 +681,36 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 int WriteToBuff(char Data[], int len){
-  if(len = 0 || len >= 20480){
+  if(len <= 1 || len >= Bufflength){
     return 3; //Dude dont try and break it
   }
-  if(DataBuffer.counter < 20480 && DataBuffer.counter + len+1 >= 20480){
-    DataBuffer.counter = 20480;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-    return 1; //buffer 1 is full
+
+  if(DataBuffer.counter < Bufflength && DataBuffer.counter + len >= Bufflength){
+    DataBuffer.counter = Bufflength;
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
+    DataBuffer.counter += len;
+    if(f_write(&myFILE, DataBuffer.Data.DataBuff1, strlen(DataBuffer.Data.DataBuff1), &testByte) == 0){
+
+      memset(DataBuffer.Data.DataBuff1, 0, sizeof(DataBuffer.Data.DataBuff1)); //Clear buffer after writing
+      return 1; //buffer 1 has been written
+    }
+    return 4; //could not write :(
   }
-  if(DataBuffer.counter + len+1 >= 40960){
+
+  if(DataBuffer.counter + len >= 2*Bufflength){
     DataBuffer.counter = 0;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-    return 2; //buffer 2 is full
+    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
+    DataBuffer.counter += len;
+    if(f_write(&myFILE, DataBuffer.Data.DataBuff2, strlen(DataBuffer.Data.DataBuff2), &testByte) == 0){
+      memset(DataBuffer.Data.DataBuff2, 0, sizeof(DataBuffer.Data.DataBuff2)); //Clear buffer after writing
+      return 2; //buffer 2 has been written
+    }
+    return 4; //could not write :(
   }
-  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
-  return 0;
+
+  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
+  DataBuffer.counter += len;
+  return 0; //moved data to buffer
 }
 /* USER CODE END 4 */
 
