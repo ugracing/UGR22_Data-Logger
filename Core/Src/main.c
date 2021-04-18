@@ -24,7 +24,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <GPS.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -82,6 +82,8 @@ typedef struct{
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+//GPS_Test remnant
+#define BUFFLENGTH 70
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -137,6 +139,8 @@ int _write(int file, char *ptr, int len)
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//GPS DMA BUFFER
+char rxBuf[BUFFLENGTH];
 FATFS myFATAFS;
 FIL myFILE;
 FIL Config;
@@ -185,9 +189,39 @@ int main(void)
   /* USER CODE BEGIN 2 */
   printf("Starting\n");
   FDCAN_Config();
+  //GPS DMA
+  HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
+  HAL_Delay(1000);//GPS required this in testing, maybe remove?
+  //variables required for 10Hz GPS
+  uint16_t measRate = 100;
+  uint16_t navRate = 1;
+  uint16_t timeRef = 0;
+  gps_rate_config(&huart3, measRate, navRate, timeRef);
+
+  gps_msg_config(&huart3, "DTM", 0);//ERROR
+  gps_msg_config(&huart3, "GAQ", 0);
+  gps_msg_config(&huart3, "GBQ", 0);
+  gps_msg_config(&huart3, "GBS", 0);//ERROR
+  gps_msg_config(&huart3, "GGA", 0);//ERROR
+  gps_msg_config(&huart3, "GLL", 0);//ERROR
+  gps_msg_config(&huart3, "GLQ", 0);
+  gps_msg_config(&huart3, "GNQ", 0);
+  gps_msg_config(&huart3, "GNS", 0);//ERROR
+  gps_msg_config(&huart3, "GPQ", 0);
+  gps_msg_config(&huart3, "GRS", 0);//ERROR
+  gps_msg_config(&huart3, "GSA", 0);//ERROR
+  gps_msg_config(&huart3, "GST", 0);//ERROR
+  gps_msg_config(&huart3, "GSV", 0);//ERROR
+  gps_msg_config(&huart3, "RLM", 0);
+  gps_msg_config(&huart3, "RMC", 1);//ERROR
+  gps_msg_config(&huart3, "TXT", 0);
+  gps_msg_config(&huart3, "VLW", 0);//ERROR
+  gps_msg_config(&huart3, "VTG", 0);//ERROR
+  gps_msg_config(&huart3, "ZDA", 0);//ERROR
+
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "det.csv\0";
+  	  char myPath[] = "gps.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -644,7 +678,7 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : RS_485_TX_EN_Pin RS_485_RX_EN_Pin */
   GPIO_InitStruct.Pin = RS_485_TX_EN_Pin|RS_485_RX_EN_Pin;
@@ -760,6 +794,21 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 				  	  printf("\n");
 				  	*/
 			      }
+}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(huart);
+
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_UART_RxCpltCallback can be implemented in the user file.
+   */
+
+  /*for(int i=0; i<BUFFLENGTH; i++){
+	  printf("%c", rxBuf[i]);
+  }*/
+  printf("GPS Recieved\n");
+
 }
 /* USER CODE END 4 */
 
