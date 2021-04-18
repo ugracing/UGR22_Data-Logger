@@ -27,62 +27,15 @@
 #include <GPS.h>
 #include <CANFD.h>
 #include <myprintf.h>
-#include "string.h"
-#define Bufflength 131072
+#include <buffer.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 RTC_TimeTypeDef sTime = {0};
 RTC_DateTypeDef sDate = {0};
-typedef union {
-  uint64_t value;
-  struct {
-    uint32_t low;
-    uint32_t high;
-  };
-  struct {
-    uint16_t s0;
-    uint16_t s1;
-    uint16_t s2;
-    uint16_t s3;
-  };
-  uint8_t bytes[8];
-} BytesUnion8;
 
-typedef struct{
-        uint32_t id;        // EID if ide set, SID otherwise
-        uint8_t extended;   // Extended ID flag
-        uint8_t length;     // Number of data bytes
-        BytesUnion8 data;    // 64 bits - lots of ways to access it.
-} CAN_FRAME;
-
-typedef union {
-  uint64_t longs[8];
-  uint32_t ints[16];
-  uint16_t shorts[32];
-  uint8_t bytes[64];
-} BytesUnion64;
-
-typedef struct{
-        uint32_t id;        // EID if ide set, SID otherwise
-        uint8_t extended;   // Extended ID flag
-        uint8_t length;     // Number of data bytes
-        BytesUnion64 data;    // 64 bits - lots of ways to access it.
-} CAN_FD_FRAME;
-
-typedef union{
-        char DataBuff[2*Bufflength];
-        struct{
-          char DataBuff1[Bufflength];
-          char DataBuff2[Bufflength];
-        };
-}Buff;
-
-typedef struct{
-  Buff Data;
-  UINT counter;
-}DataBuff;
 
 /* USER CODE END PTD */
 
@@ -111,7 +64,7 @@ UART_HandleTypeDef huart3;
 DMA_HandleTypeDef hdma_usart3_rx;
 
 /* USER CODE BEGIN PV */
-DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
+
 CAN_FRAME CanFrame;
 CAN_FD_FRAME CanFDFrame;
 
@@ -130,17 +83,12 @@ static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
-int WriteToBuff(char *, int);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-FATFS myFATAFS;
-FIL myFILE;
-FIL Config;
-UINT ConfByteR;
-UINT ConfByteW;
-UINT testByte;
+
 /* USER CODE END 0 */
 
 /**
@@ -235,9 +183,10 @@ int main(void)
       }
       f_close(&Config);
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+  	  }
 
   	  //write speed test
-  	  	for(int i = 0; i<131072; i++){
+  	  	/*for(int i = 0; i<131072; i++){
   		    DataBuffer.Data.DataBuff1[i] = 'A';
   	    }
   	    int start = HAL_GetTick();
@@ -249,21 +198,20 @@ int main(void)
   	    char myTime[200];
   	    sprintf(myTime, "\r%i", duration);
   	    f_write(&myFILE, myTime, strlen(myTime), &testByte);
-      f_close(&myFILE);
-    }
+        f_close(&myFILE);*/
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1){
-	  ///HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-	  printf("loop\n");
-	  HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  /*HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
 
 	  printf("Date:%u Month:%u Year:%u\n", sDate.Date, sDate.Month, sDate.Year);
-	  printf("Hours:%u Minutes:%u Seconds:%u\n", sTime.Hours, sTime.Minutes, sTime.Seconds);
+	  printf("Hours:%u Minutes:%u Seconds:%u\n", sTime.Hours, sTime.Minutes, sTime.Seconds);*/
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
@@ -801,39 +749,6 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-int WriteToBuff(char Data[], int len){
-  if(len <= 1 || len >= Bufflength){
-    return 3; //Dude dont try and break it
-  }
-
-  if(DataBuffer.counter < Bufflength && DataBuffer.counter + len >= Bufflength){
-    DataBuffer.counter = Bufflength;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
-    DataBuffer.counter += len;
-    if(f_write(&myFILE, DataBuffer.Data.DataBuff1, strlen(DataBuffer.Data.DataBuff1), &testByte) == 0){
-
-      memset(DataBuffer.Data.DataBuff1, 0, sizeof(DataBuffer.Data.DataBuff1)); //Clear buffer after writing
-      return 1; //buffer 1 has been written
-    }
-    return 4; //could not write :(
-  }
-
-  if(DataBuffer.counter + len >= 2*Bufflength){
-    DataBuffer.counter = 0;
-    memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
-    DataBuffer.counter += len;
-    if(f_write(&myFILE, DataBuffer.Data.DataBuff2, strlen(DataBuffer.Data.DataBuff2), &testByte) == 0){
-      memset(DataBuffer.Data.DataBuff2, 0, sizeof(DataBuffer.Data.DataBuff2)); //Clear buffer after writing
-      return 2; //buffer 2 has been written
-    }
-    return 4; //could not write :(
-  }
-
-  memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
-  DataBuffer.counter += len;
-  return 0; //moved data to buffer
-}
-
 
 
 /* USER CODE END 4 */
