@@ -11,6 +11,8 @@
 #include <GPS.h>
 #include "main.h"
 #include <myprintf.h>
+#include <stdbool.h>
+#include <buffer.h>
 
 int gps_msg_config(UART_HandleTypeDef *huart, const char *nema, int rus1){
 	if (strlen(nema) != 3) return 1;
@@ -96,7 +98,9 @@ int get_date_time(UART_HandleTypeDef *huart){
 
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+int GPS_flag = 0;
+
+void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
 {
   /* Prevent unused argument(s) compilation warning */
   UNUSED(huart);
@@ -104,10 +108,22 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_UART_RxCpltCallback can be implemented in the user file.
    */
-
-  for(int i=0; i<BUFFLENGTH; i++){
-	  printf("%c", rxBuf[i]);
+ /* if(count%2){
+	  for(int i=0; i<BUFFLENGTH/2; i++){
+		  printf("%c", rxBuf[i]);
+	  }
   }
+  else{
+	  for(int i=BUFFLENGTH/2; i<BUFFLENGTH; i++){
+	  		  printf("%c", rxBuf[i]);
+	  }
+  }*/
+  //for(int i=0; i<BUFFLENGTH; i++){
+  	  		  //printf("%c", rxBuf[i]);
+  	  //}
+  GPS_flag = 1;
+  //WriteToBuff(rxBuf+70, BUFFLENGTH/2);
+  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);*/
   //printf("GPS Recieved\n");
 
 }

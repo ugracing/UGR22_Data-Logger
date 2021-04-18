@@ -49,8 +49,8 @@ RTC_DateTypeDef sDate = {0};
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-FDCAN_HandleTypeDef hfdcan1;
 
+FDCAN_HandleTypeDef hfdcan1;
 FDCAN_HandleTypeDef hfdcan2;
 
 RTC_HandleTypeDef hrtc;
@@ -88,7 +88,7 @@ static void MX_RTC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+int end_flag = 1;
 /* USER CODE END 0 */
 
 /**
@@ -164,7 +164,7 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "gps.csv\0";
+  	  char myPath[] = "gpsdat.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -199,24 +199,34 @@ int main(void)
   	    sprintf(myTime, "\r%i", duration);
   	    f_write(&myFILE, myTime, strlen(myTime), &testByte);
         f_close(&myFILE);*/
+  extern int GPS_flag;
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1){
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+  while (end_flag){
+
+	  if(GPS_flag){
+		  WriteToBuff(rxBuf, sizeof(rxBuf));
+		  GPS_flag=0;
+	  }
 	  /*HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
 
 	  printf("Date:%u Month:%u Year:%u\n", sDate.Date, sDate.Month, sDate.Year);
 	  printf("Hours:%u Minutes:%u Seconds:%u\n", sTime.Hours, sTime.Minutes, sTime.Seconds);*/
-	  HAL_Delay(1000);
+
+	  //WriteToBuff(A, 2);
+	  //HAL_Delay(1000);
+	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
+  f_close(&myFILE);
+
   /* USER CODE END 3 */
 }
 
@@ -746,11 +756,26 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(CARD_DET_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
 }
 
 /* USER CODE BEGIN 4 */
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(GPIO_Pin);
 
+  /* NOTE: This function Should not be modified, when the callback is needed,
+           the HAL_GPIO_EXTI_Callback could be implemented in the user file
+   */
+
+  end_flag = 0;
+
+}
 /* USER CODE END 4 */
 
 /**

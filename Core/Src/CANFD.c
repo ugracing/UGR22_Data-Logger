@@ -4,7 +4,8 @@
  *  Created on: Apr 18, 2021
  *      Author: adamf
  */
-
+#include <stdio.h>
+#include <string.h>
 #include <CANFD.h>
 #include <myprintf.h>
 

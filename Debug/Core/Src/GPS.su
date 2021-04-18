@@ -1,4 +1,4 @@
-GPS.c:15:5:gps_msg_config	128	static
-GPS.c:39:5:gps_rate_config	48	static
-GPS.c:73:5:get_date_time	144	static
-GPS.c:99:6:HAL_UART_RxCpltCallback	24	static
+GPS.c:17:5:gps_msg_config	128	static
+GPS.c:41:5:gps_rate_config	48	static
+GPS.c:75:5:get_date_time	144	static
+GPS.c:103:6:HAL_UART_RxHalfCpltCallback	16	static

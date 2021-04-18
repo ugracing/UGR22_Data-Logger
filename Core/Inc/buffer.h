@@ -13,7 +13,8 @@
 #include <myfatfs.h>
 
 //defines
-#define Bufflength 131072
+//#define Bufflength 131072
+#define Bufflength 1024
 
 
 
