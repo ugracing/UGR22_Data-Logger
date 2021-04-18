@@ -106,6 +106,10 @@ DMA_HandleTypeDef hdma_usart3_rx;
 DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
 CAN_FRAME CanFrame;
 CAN_FD_FRAME CanFDFrame;
+
+//CAN_Test remnants
+FDCAN_RxHeaderTypeDef RxHeader;
+uint8_t RxData[64];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,6 +124,15 @@ static void MX_USART3_UART_Init(void);
 static void MX_SPI1_Init(void);
 /* USER CODE BEGIN PFP */
 int WriteToBuff(char *, int);
+static void FDCAN_Config(void);
+int _write(int file, char *ptr, int len)
+{
+  /* Implement your write code here, this is used by puts and printf for example */
+  int i=0;
+  for(i=0 ; i<len ; i++)
+    ITM_SendChar((*ptr++));
+  return len;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -170,9 +183,11 @@ int main(void)
   MX_USART3_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
+  printf("Starting\n");
+  FDCAN_Config();
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "moon.csv\0";
+  	  char myPath[] = "det.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -212,7 +227,8 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1){
-	  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  ///HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  printf("loop\n");
 	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
@@ -236,7 +252,7 @@ void SystemClock_Config(void)
   HAL_PWREx_ConfigSupply(PWR_LDO_SUPPLY);
   /** Configure the main internal regulator output voltage
   */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
   /** Macro to configure the PLL clock source
@@ -251,9 +267,9 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 2;
-  RCC_OscInitStruct.PLL.PLLN = 38;
+  RCC_OscInitStruct.PLL.PLLN = 64;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 84;
+  RCC_OscInitStruct.PLL.PLLQ = 10;
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
@@ -270,12 +286,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.SYSCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;
-  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
-  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
+  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
+  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -292,7 +308,7 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
   PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL;
-  PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_HSE;
+  PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_PLL;
   PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
@@ -323,24 +339,24 @@ static void MX_FDCAN1_Init(void)
 
   /* USER CODE END FDCAN1_Init 1 */
   hfdcan1.Instance = FDCAN1;
-  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_BRS;
   hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
   hfdcan1.Init.NominalPrescaler = 1;
-  hfdcan1.Init.NominalSyncJumpWidth = 1;
-  hfdcan1.Init.NominalTimeSeg1 = 2;
-  hfdcan1.Init.NominalTimeSeg2 = 2;
+  hfdcan1.Init.NominalSyncJumpWidth = 50;
+  hfdcan1.Init.NominalTimeSeg1 = 109;
+  hfdcan1.Init.NominalTimeSeg2 = 50;
   hfdcan1.Init.DataPrescaler = 1;
-  hfdcan1.Init.DataSyncJumpWidth = 1;
-  hfdcan1.Init.DataTimeSeg1 = 1;
-  hfdcan1.Init.DataTimeSeg2 = 1;
+  hfdcan1.Init.DataSyncJumpWidth = 5;
+  hfdcan1.Init.DataTimeSeg1 = 10;
+  hfdcan1.Init.DataTimeSeg2 = 5;
   hfdcan1.Init.MessageRAMOffset = 0;
-  hfdcan1.Init.StdFiltersNbr = 0;
-  hfdcan1.Init.ExtFiltersNbr = 0;
-  hfdcan1.Init.RxFifo0ElmtsNbr = 0;
-  hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_8;
+  hfdcan1.Init.StdFiltersNbr = 2;
+  hfdcan1.Init.ExtFiltersNbr = 2;
+  hfdcan1.Init.RxFifo0ElmtsNbr = 64;
+  hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_64;
   hfdcan1.Init.RxFifo1ElmtsNbr = 0;
   hfdcan1.Init.RxFifo1ElmtSize = FDCAN_DATA_BYTES_8;
   hfdcan1.Init.RxBuffersNbr = 0;
@@ -696,6 +712,55 @@ int WriteToBuff(char Data[], int len){
   memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
   return 0;
 }
+static void FDCAN_Config(void){
+	FDCAN_FilterTypeDef sFilterConfig;
+
+	  /* Configure Rx filter */
+	  sFilterConfig.IdType = FDCAN_STANDARD_ID;
+	  sFilterConfig.FilterIndex = 0;
+	  sFilterConfig.FilterType = FDCAN_FILTER_MASK;
+	  sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
+	  sFilterConfig.FilterID1 = 0x321;
+	  sFilterConfig.FilterID2 = 0x7FF;
+	  if (HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig) == HAL_OK)
+	  {
+	    printf("Filter configured\n");
+	  }
+
+	  /* Configure global filter:
+	     Filter all remote frames with STD and EXT ID
+	     Reject non matching frames with STD ID and EXT ID */
+	  if (HAL_FDCAN_ConfigGlobalFilter(&hfdcan1, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+	if (HAL_FDCAN_Start(&hfdcan1) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+	if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
+	  {
+	    /* Notification Error */
+	    Error_Handler();
+	  }
+	HAL_FDCAN_EnableTxDelayCompensation(&hfdcan1);
+
+}
+void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs)
+{
+	if (HAL_FDCAN_GetRxMessage(hfdcan1, FDCAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
+			      {
+					HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+					printf("Packet Acquired!\n");
+
+					/*
+				  	  for(int i=0;i<64;i++){
+				  			  printf("%c",RxData[i]);
+				  	  }
+				  	  printf("\n");
+				  	*/
+			      }
+}
 /* USER CODE END 4 */
 
 /**
@@ -709,6 +774,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
+	  printf("Error\n");
   }
   /* USER CODE END Error_Handler_Debug */
 }
