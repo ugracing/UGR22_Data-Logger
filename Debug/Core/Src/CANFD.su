@@ -1,0 +1,2 @@
+CANFD.c:11:6:FDCAN_Config	56	static
+CANFD.c:46:6:HAL_FDCAN_RxFifo0Callback	16	static

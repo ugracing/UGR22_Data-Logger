@@ -2,7 +2,7 @@
  * GPS.c
  *
  *  Created on: Mar 26, 2021
- *      Author: adamf
+ *      Author: Charlie McCarthy
  */
 
 #include <stdio.h>
@@ -10,6 +10,7 @@
 #include <stdint.h>
 #include <GPS.h>
 #include "main.h"
+#include <myprintf.h>
 
 int gps_msg_config(UART_HandleTypeDef *huart, const char *nema, int rus1){
 	if (strlen(nema) != 3) return 1;
@@ -92,5 +93,21 @@ int get_date_time(UART_HandleTypeDef *huart){
     printf("%s", pubx_date_time_buffer);
 
     return 0;
+
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(huart);
+
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_UART_RxCpltCallback can be implemented in the user file.
+   */
+
+  for(int i=0; i<BUFFLENGTH; i++){
+	  printf("%c", rxBuf[i]);
+  }
+  //printf("GPS Recieved\n");
 
 }

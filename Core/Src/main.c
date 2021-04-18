@@ -25,6 +25,8 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <GPS.h>
+#include <CANFD.h>
+#include <myprintf.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,7 +87,7 @@ typedef struct{
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 //GPS_Test remnant
-#define BUFFLENGTH 70
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -94,8 +96,8 @@ typedef struct{
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
 FDCAN_HandleTypeDef hfdcan1;
+
 FDCAN_HandleTypeDef hfdcan2;
 
 RTC_HandleTypeDef hrtc;
@@ -113,9 +115,7 @@ DataBuff DataBuffer = { .Data.DataBuff = 0, .counter = 0};
 CAN_FRAME CanFrame;
 CAN_FD_FRAME CanFDFrame;
 
-//CAN_Test remnants
-FDCAN_RxHeaderTypeDef RxHeader;
-uint8_t RxData[64];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -131,21 +131,10 @@ static void MX_SPI1_Init(void);
 static void MX_RTC_Init(void);
 /* USER CODE BEGIN PFP */
 int WriteToBuff(char *, int);
-static void FDCAN_Config(void);
-int _write(int file, char *ptr, int len)
-{
-  /* Implement your write code here, this is used by puts and printf for example */
-  int i=0;
-  for(i=0 ; i<len ; i++)
-    ITM_SendChar((*ptr++));
-  return len;
-}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-//GPS DMA BUFFER
-char rxBuf[BUFFLENGTH];
 FATFS myFATAFS;
 FIL myFILE;
 FIL Config;
@@ -194,7 +183,7 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
   printf("Starting\n");
-  FDCAN_Config();
+  FDCAN_Config(&hfdcan1);
   //GPS DMA
   HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
   HAL_Delay(1000);//GPS required this in testing, maybe remove?
@@ -829,70 +818,9 @@ int WriteToBuff(char Data[], int len){
   memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len+1);
   return 0;
 }
-static void FDCAN_Config(void){
-	FDCAN_FilterTypeDef sFilterConfig;
 
-	  /* Configure Rx filter */
-	  sFilterConfig.IdType = FDCAN_STANDARD_ID;
-	  sFilterConfig.FilterIndex = 0;
-	  sFilterConfig.FilterType = FDCAN_FILTER_MASK;
-	  sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-	  sFilterConfig.FilterID1 = 0x321;
-	  sFilterConfig.FilterID2 = 0x7FF;
-	  if (HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig) == HAL_OK)
-	  {
-	    printf("Filter configured\n");
-	  }
 
-	  /* Configure global filter:
-	     Filter all remote frames with STD and EXT ID
-	     Reject non matching frames with STD ID and EXT ID */
-	  if (HAL_FDCAN_ConfigGlobalFilter(&hfdcan1, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-	if (HAL_FDCAN_Start(&hfdcan1) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-	if (HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0) != HAL_OK)
-	  {
-	    /* Notification Error */
-	    Error_Handler();
-	  }
-	HAL_FDCAN_EnableTxDelayCompensation(&hfdcan1);
 
-}
-void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs)
-{
-	if (HAL_FDCAN_GetRxMessage(hfdcan1, FDCAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
-			      {
-					HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-					printf("Packet Acquired!\n");
-
-					/*
-				  	  for(int i=0;i<64;i++){
-				  			  printf("%c",RxData[i]);
-				  	  }
-				  	  printf("\n");
-				  	*/
-			      }
-}
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  /* Prevent unused argument(s) compilation warning */
-  UNUSED(huart);
-
-  /* NOTE : This function should not be modified, when the callback is needed,
-            the HAL_UART_RxCpltCallback can be implemented in the user file.
-   */
-
-  /*for(int i=0; i<BUFFLENGTH; i++){
-	  printf("%c", rxBuf[i]);
-  }*/
-  //printf("GPS Recieved\n");
-
-}
 /* USER CODE END 4 */
 
 /**
@@ -906,7 +834,7 @@ void Error_Handler(void)
   __disable_irq();
   while (1)
   {
-	  printf("Error\n");
+	  printf("Error Handler\n");
   }
   /* USER CODE END Error_Handler_Debug */
 }

@@ -41,7 +41,7 @@ Core/Src/GPS.o: ../Core/Src/GPS.c ../Core/Inc/GPS.h ../Core/Inc/main.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_ll_usb.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h \
- ../Core/Inc/main.h
+ ../Core/Inc/main.h ../Core/Inc/myprintf.h
 
 ../Core/Inc/GPS.h:
 
@@ -132,3 +132,5 @@ Core/Src/GPS.o: ../Core/Src/GPS.c ../Core/Inc/GPS.h ../Core/Inc/main.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_pcd_ex.h:
 
 ../Core/Inc/main.h:
+
+../Core/Inc/myprintf.h:
