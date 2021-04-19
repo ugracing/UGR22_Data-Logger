@@ -204,6 +204,20 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /**
+  * @brief This function handles PVD and AVD interrupts through EXTI line 16.
+  */
+void PVD_AVD_IRQHandler(void)
+{
+  /* USER CODE BEGIN PVD_AVD_IRQn 0 */
+
+  /* USER CODE END PVD_AVD_IRQn 0 */
+  HAL_PWREx_PVD_AVD_IRQHandler();
+  /* USER CODE BEGIN PVD_AVD_IRQn 1 */
+
+  /* USER CODE END PVD_AVD_IRQn 1 */
+}
+
+/**
   * @brief This function handles DMA1 stream0 global interrupt.
   */
 void DMA1_Stream0_IRQHandler(void)

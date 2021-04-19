@@ -67,10 +67,25 @@ void HAL_MspInit(void)
   /* USER CODE BEGIN MspInit 0 */
 
   /* USER CODE END MspInit 0 */
+  PWR_PVDTypeDef sConfigPVD = {0};
 
   __HAL_RCC_SYSCFG_CLK_ENABLE();
 
   /* System interrupt init*/
+
+  /* Peripheral interrupt init */
+  /* PVD_AVD_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(PVD_AVD_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(PVD_AVD_IRQn);
+
+  /** PVD Configuration
+  */
+  sConfigPVD.PVDLevel = PWR_PVDLEVEL_6;
+  sConfigPVD.Mode = PWR_PVD_MODE_IT_RISING;
+  HAL_PWR_ConfigPVD(&sConfigPVD);
+  /** Enable the PVD Output
+  */
+  HAL_PWR_EnablePVD();
 
   /* USER CODE BEGIN MspInit 1 */
 

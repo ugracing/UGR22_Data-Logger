@@ -89,6 +89,7 @@ static void MX_RTC_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 int end_flag = 1;
+char close_msg[] = "\n\r emergency shutdown";
 /* USER CODE END 0 */
 
 /**
@@ -164,7 +165,7 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "gpsdat.csv\0";
+  	  char myPath[] = "pvd4.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -225,7 +226,10 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
   }
-  f_close(&myFILE);
+
+    f_write(&myFILE, close_msg, strlen(close_msg), &testByte);
+    f_close(&myFILE);
+    printf("File closed\n");
 
   /* USER CODE END 3 */
 }
@@ -676,7 +680,7 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA1_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
 
 }
@@ -775,6 +779,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 
   end_flag = 0;
 
+}
+void HAL_PWR_PVDCallback (void)
+{
+  /* NOTE : This function should not be modified, when the callback is needed,
+            the HAL_PWR_PVDCallback can be implemented in the user file
+  */
+	end_flag = 0;
 }
 /* USER CODE END 4 */
 
