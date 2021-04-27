@@ -28,7 +28,7 @@
 #include <CANFD.h>
 #include <myprintf.h>
 #include <buffer.h>
-
+#include "MY_NRF24.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -88,6 +88,10 @@ static void MX_RTC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//Telemetry stuff
+uint64_t TxpipeAddrs = 0x11223344AA;
+char myTxData[32] = "The telemetry is working!";
+
 int end_flag = 1;
 char close_msg[] = "\n\r emergency shutdown";
 /* USER CODE END 0 */
@@ -131,6 +135,21 @@ int main(void)
   MX_SPI1_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
+  //Telemetry
+  NRF24_begin(TELE_CE_GPIO_Port, TELE_CS_Pin, TELE_CE_Pin, hspi1);
+    nrf24_DebugUART_Init(huart3);
+
+
+
+    // TRANSMIT NO ACK //
+    NRF24_stopListening();
+    NRF24_openWritingPipe(TxpipeAddrs);
+    NRF24_setAutoAck(false);
+    NRF24_setChannel(42);
+    NRF24_setPayloadSize(32);
+
+    printRadioSettings();
+  //END Telemetry
   printf("Starting\n");
   FDCAN_Config(&hfdcan1);
   //GPS DMA
@@ -208,10 +227,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (end_flag){
 
-	  if(GPS_flag){
+	  /*if(GPS_flag){
 		  WriteToBuff(rxBuf, sizeof(rxBuf));
 		  GPS_flag=0;
-	  }
+	  }*/
+	  if(NRF24_write(myTxData, 32)){
+		  	  printf("TeleSending\n\r");
+	  		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+	  		  HAL_Delay(1000);
+	  	  }
 	  /*HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
@@ -304,14 +328,14 @@ void SystemClock_Config(void)
                               |RCC_PERIPHCLK_USB;
   PeriphClkInitStruct.PLL2.PLL2M = 2;
   PeriphClkInitStruct.PLL2.PLL2N = 12;
-  PeriphClkInitStruct.PLL2.PLL2P = 2;
+  PeriphClkInitStruct.PLL2.PLL2P = 3;
   PeriphClkInitStruct.PLL2.PLL2Q = 2;
   PeriphClkInitStruct.PLL2.PLL2R = 3;
   PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
   PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL2;
-  PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL;
+  PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL2;
   PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_PLL;
   PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
@@ -548,7 +572,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
