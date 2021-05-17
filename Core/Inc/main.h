@@ -72,6 +72,7 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOB
 #define BTN_INT_Pin GPIO_PIN_9
 #define BTN_INT_GPIO_Port GPIOE
+#define BTN_INT_EXTI_IRQn EXTI9_5_IRQn
 #define GPS_RST_Pin GPIO_PIN_10
 #define GPS_RST_GPIO_Port GPIOD
 #define CARD_DET_Pin GPIO_PIN_15
