@@ -772,17 +772,17 @@ static void MX_FDCAN1_Init(void)
  80008ce:	4b26      	ldr	r3, [pc, #152]	; (8000968 <MX_FDCAN1_Init+0xc4>)
  80008d0:	2201      	movs	r2, #1
  80008d2:	615a      	str	r2, [r3, #20]
-  hfdcan1.Init.NominalSyncJumpWidth = 50;
+  hfdcan1.Init.NominalSyncJumpWidth = 23;
  80008d4:	4b24      	ldr	r3, [pc, #144]	; (8000968 <MX_FDCAN1_Init+0xc4>)
- 80008d6:	2232      	movs	r2, #50	; 0x32
+ 80008d6:	2217      	movs	r2, #23
  80008d8:	619a      	str	r2, [r3, #24]
-  hfdcan1.Init.NominalTimeSeg1 = 109;
+  hfdcan1.Init.NominalTimeSeg1 = 56;
  80008da:	4b23      	ldr	r3, [pc, #140]	; (8000968 <MX_FDCAN1_Init+0xc4>)
- 80008dc:	226d      	movs	r2, #109	; 0x6d
+ 80008dc:	2238      	movs	r2, #56	; 0x38
  80008de:	61da      	str	r2, [r3, #28]
-  hfdcan1.Init.NominalTimeSeg2 = 50;
+  hfdcan1.Init.NominalTimeSeg2 = 23;
  80008e0:	4b21      	ldr	r3, [pc, #132]	; (8000968 <MX_FDCAN1_Init+0xc4>)
- 80008e2:	2232      	movs	r2, #50	; 0x32
+ 80008e2:	2217      	movs	r2, #23
  80008e4:	621a      	str	r2, [r3, #32]
   hfdcan1.Init.DataPrescaler = 1;
  80008e6:	4b20      	ldr	r3, [pc, #128]	; (8000968 <MX_FDCAN1_Init+0xc4>)

@@ -123,7 +123,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	  //HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -236,9 +237,9 @@ static void MX_FDCAN1_Init(void)
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
   hfdcan1.Init.NominalPrescaler = 1;
-  hfdcan1.Init.NominalSyncJumpWidth = 50;
-  hfdcan1.Init.NominalTimeSeg1 = 109;
-  hfdcan1.Init.NominalTimeSeg2 = 50;
+  hfdcan1.Init.NominalSyncJumpWidth = 23;
+  hfdcan1.Init.NominalTimeSeg1 = 56;
+  hfdcan1.Init.NominalTimeSeg2 = 23;
   hfdcan1.Init.DataPrescaler = 1;
   hfdcan1.Init.DataSyncJumpWidth = 5;
   hfdcan1.Init.DataTimeSeg1 = 10;
