@@ -57,7 +57,53 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 					printf("Packet Acquired!\n");
 					if(RxHeader.FDFormat == FDCAN_CLASSIC_CAN){
 						CanFrame.id = RxHeader.Identifier;
-						CanFrame.length = RxHeader.DataLength;
+						switch(RxHeader.DataLength/65536){
+							case 1:
+								CanFrame.length = 1;
+								break;
+							case 2:
+								CanFrame.length = 2;
+								break;
+							case 3:
+								CanFrame.length = 3;
+								break;
+							case 4:
+								CanFrame.length = 4;
+								break;
+							case 5:
+								CanFrame.length = 5;
+								break;
+							case 6:
+								CanFrame.length = 6;
+								break;
+							case 7:
+								CanFrame.length = 7;
+								break;
+							case 8:
+								CanFrame.length = 8;
+								break;
+							case 9:
+								CanFrame.length = 12;
+								break;
+							case 10:
+								CanFrame.length = 16;
+								break;
+							case 11:
+								CanFrame.length = 20;
+								break;
+							case 12:
+								CanFrame.length = 24;
+								break;
+							case 13:
+								CanFrame.length = 32;
+								break;
+							case 14:
+								CanFrame.length = 48;
+								break;
+							case 15:
+								CanFrame.length = 64;
+								break;
+						}
 						CanFrame.time = time;
 						CAN_Flag = 1;
 						memcpy(&CanFrame.data.bytes, RxData, CanFrame.length);
@@ -70,7 +116,55 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 					}
 					if(RxHeader.FDFormat == FDCAN_FD_CAN){
 						CanFDFrame.id = RxHeader.Identifier;
-						CanFDFrame.length = RxHeader.DataLength;
+
+						switch(RxHeader.DataLength/65536){
+							case 1:
+								CanFDFrame.length = 1;
+								break;
+							case 2:
+								CanFDFrame.length = 2;
+								break;
+							case 3:
+								CanFDFrame.length = 3;
+								break;
+							case 4:
+								CanFDFrame.length = 4;
+								break;
+							case 5:
+								CanFDFrame.length = 5;
+								break;
+							case 6:
+								CanFDFrame.length = 6;
+								break;
+							case 7:
+								CanFDFrame.length = 7;
+								break;
+							case 8:
+								CanFDFrame.length = 8;
+								break;
+							case 9:
+								CanFDFrame.length = 12;
+								break;
+							case 10:
+								CanFDFrame.length = 16;
+								break;
+							case 11:
+								CanFDFrame.length = 20;
+								break;
+							case 12:
+								CanFDFrame.length = 24;
+								break;
+							case 13:
+								CanFDFrame.length = 32;
+								break;
+							case 14:
+								CanFDFrame.length = 48;
+								break;
+							case 15:
+								CanFDFrame.length = 64;
+								break;
+						}
+
 						CanFDFrame.time = time;
 						FDCAN_Flag = 1;
 						memcpy(&CanFDFrame.data.bytes, RxData, CanFDFrame.length);
