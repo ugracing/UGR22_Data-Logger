@@ -50,8 +50,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
  ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/GPS.h ../Core/Inc/main.h \
- ../Core/Inc/CANFD.h ../Core/Inc/myprintf.h ../Core/Inc/buffer.h \
- ../Core/Inc/myfatfs.h ../Core/Inc/MY_NRF24.h ../Core/Inc/nRF24L01.h
+ ../Core/Inc/CANFD.h ../Core/Inc/buffer.h ../Core/Inc/myfatfs.h \
+ ../Core/Inc/myprintf.h ../Core/Inc/MY_NRF24.h ../Core/Inc/nRF24L01.h
 
 ../Core/Inc/main.h:
 
@@ -171,11 +171,11 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 
 ../Core/Inc/CANFD.h:
 
-../Core/Inc/myprintf.h:
-
 ../Core/Inc/buffer.h:
 
 ../Core/Inc/myfatfs.h:
+
+../Core/Inc/myprintf.h:
 
 ../Core/Inc/MY_NRF24.h:
 

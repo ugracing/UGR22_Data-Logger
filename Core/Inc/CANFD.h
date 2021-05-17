@@ -10,12 +10,13 @@
 
 //includes
 #include "main.h"
+#include <buffer.h>
 
 //typdefs
 FDCAN_RxHeaderTypeDef RxHeader;
-
 //variables
-
+CAN_FRAME CanFrame;
+CAN_FD_FRAME CanFDFrame;
 uint8_t RxData[64];
 
 //functions

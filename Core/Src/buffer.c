@@ -23,7 +23,7 @@ int WriteToBuff(char Data[], int len){
     DataBuffer.counter += len;
     if(f_write(&myFILE, DataBuffer.Data.DataBuff1, sizeof(DataBuffer.Data.DataBuff1), &testByte) == 0){
 
-      //memset(DataBuffer.Data.DataBuff1, 0, sizeof(DataBuffer.Data.DataBuff1)); //Clear buffer after writing
+      memset(DataBuffer.Data.DataBuff2, 0, sizeof(DataBuffer.Data.DataBuff2)); //Clear next buffer after writing
     	//f_sync(&myFILE);
       printf("Buffer 1 has been written\n");
       return 1; //buffer 1 has been written
@@ -36,7 +36,7 @@ int WriteToBuff(char Data[], int len){
     memcpy((DataBuffer.Data.DataBuff + DataBuffer.counter), Data, len);
     DataBuffer.counter += len;
     if(f_write(&myFILE, DataBuffer.Data.DataBuff2, sizeof(DataBuffer.Data.DataBuff2), &testByte) == 0){
-      //memset(DataBuffer.Data.DataBuff2, 0, sizeof(DataBuffer.Data.DataBuff2)); //Clear buffer after writing
+      memset(DataBuffer.Data.DataBuff1, 0, sizeof(DataBuffer.Data.DataBuff1)); //Clear next buffer after writing
     	//f_sync(&myFILE);
       printf("Buffer 2 has been written\n");
       return 2; //buffer 2 has been written

@@ -65,8 +65,8 @@ DMA_HandleTypeDef hdma_usart3_rx;
 
 /* USER CODE BEGIN PV */
 
-CAN_FRAME CanFrame;
-CAN_FD_FRAME CanFDFrame;
+extern CAN_FRAME CanFrame;
+extern CAN_FD_FRAME CanFDFrame;
 
 
 /* USER CODE END PV */
@@ -204,7 +204,7 @@ int main(void)
       }
       f_close(&Config);
   	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
-  	  }
+  }
 
   	  //write speed test
   	  	/*for(int i = 0; i<131072; i++){
@@ -220,12 +220,32 @@ int main(void)
   	    sprintf(myTime, "\r%i", duration);
   	    f_write(&myFILE, myTime, strlen(myTime), &testByte);
         f_close(&myFILE);*/
-  extern int GPS_flag;
 
+  extern int GPS_flag;
+  extern int FDCAN_Flag;
+  extern int CAN_Flag;
+
+  sTime.SecondFraction = 999;
+  uint32_t LocalTime = HAL_GetTick();
+  HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+
+  sTime.SubSeconds -= LocalTime % 1000;
+  LocalTime = LocalTime/1000;
+  sTime.Seconds -= LocalTime % 60;
+  LocalTime = LocalTime/60;
+  sTime.Minutes -= LocalTime % 60;
+  LocalTime = LocalTime/60;
+  sTime.Hours -= LocalTime % 60;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  char CanWrite[400];
+  int CW = 0;
+  char CanFDWrite[400];
+  int CFDW = 0;
+
   while (end_flag){
 
 	  if(GPS_flag){
@@ -243,14 +263,58 @@ int main(void)
 
 	  printf("Date:%u Month:%u Year:%u\n", sDate.Date, sDate.Month, sDate.Year);
 	  printf("Hours:%u Minutes:%u Seconds:%u\n", sTime.Hours, sTime.Minutes, sTime.Seconds);*/
+	  if(FDCAN_Flag){
 
+		  RTC_TimeTypeDef lTime = sTime;
+		  LocalTime = CanFDFrame.time;
+		  lTime.SubSeconds += LocalTime % 1000;
+		  LocalTime = LocalTime/1000;
+		  lTime.Seconds += LocalTime % 60;
+		  LocalTime = LocalTime/60;
+		  lTime.Minutes += LocalTime % 60;
+		  LocalTime = LocalTime/60;
+		  lTime.Hours += LocalTime % 60;
+
+		  //date/time, CANID, Data
+		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
+				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
+				  CanFDFrame.id);
+		  for(int i = 0; i < CanFDFrame.length; i++){
+			  CFDW += sprintf(CanFDWrite + CFDW, "%x", CanFDFrame.data.bytes[i]);
+		  }
+		  WriteToBuff(CanFDWrite, CFDW);
+
+		  FDCAN_Flag = 0;
+	  }
+	  if(CAN_Flag){
+
+		  RTC_TimeTypeDef lTime = sTime;
+		  LocalTime = CanFrame.time;
+		  lTime.SubSeconds += LocalTime % 1000;
+		  LocalTime = LocalTime/1000;
+		  lTime.Seconds += LocalTime % 60;
+		  LocalTime = LocalTime/60;
+		  lTime.Minutes += LocalTime % 60;
+		  LocalTime = LocalTime/60;
+		  lTime.Hours += LocalTime % 60;
+
+		  //date/time, CANID, Data
+		  CFDW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
+				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
+				  CanFrame.id);
+		  for(int i = 0; i < CanFDFrame.length; i++){
+			  CFDW += sprintf(CanWrite + CFDW, "%x", CanFrame.data.bytes[i]);
+		  }
+		  WriteToBuff(CanWrite, CFDW);
+		  CAN_Flag = 0;
+	  }
 	  //WriteToBuff(A, 2);
 	  //HAL_Delay(1000);
 	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+}
 
     //f_write(&myFILE, close_msg, strlen(close_msg), &testByte);
     //f_close(&myFILE);

@@ -7,7 +7,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <CANFD.h>
+#include <buffer.h>
 #include <myprintf.h>
+
+int FDCAN_Flag = 0;
+int CAN_Flag = 0;
 
 void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 	FDCAN_FilterTypeDef sFilterConfig;
@@ -48,8 +52,35 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 {
 	if (HAL_FDCAN_GetRxMessage(hfdcan1, FDCAN_RX_FIFO0, &RxHeader, RxData) == HAL_OK)
 			      {
+					uint32_t time = HAL_GetTick();
 					HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 					printf("Packet Acquired!\n");
+					if(RxHeader.FDFormat == FDCAN_CLASSIC_CAN){
+						CanFrame.id = RxHeader.Identifier;
+						CanFrame.length = RxHeader.DataLength;
+						CanFrame.time = time;
+						CAN_Flag = 1;
+						memcpy(CanFrame.data.bytes, RxData, CanFrame.length);
+						if(RxHeader.IdType == FDCAN_EXTENDED_ID){
+							CanFrame.extended = 1;
+						}
+						else{
+							CanFrame.extended = 0;
+						}
+					}
+					if(RxHeader.FDFormat == FDCAN_FD_CAN){
+						CanFDFrame.id = RxHeader.Identifier;
+						CanFDFrame.length = RxHeader.DataLength;
+						CanFDFrame.time = time;
+						FDCAN_Flag = 1;
+						memcpy(CanFDFrame.data.bytes, RxData, CanFDFrame.length);
+						if(RxHeader.IdType == FDCAN_EXTENDED_ID){
+							CanFDFrame.extended = 1;
+						}
+						else{
+							CanFDFrame.extended = 0;
+						}
+					}
 
 					/*
 				  	  for(int i=0;i<64;i++){

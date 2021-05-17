@@ -13,8 +13,8 @@
 #include <myfatfs.h>
 
 //defines
-//#define Bufflength 131072
-#define Bufflength 1024
+#define Bufflength 131072
+//#define Bufflength 1024
 
 
 
@@ -38,7 +38,8 @@ typedef struct{
         uint32_t id;        // EID if ide set, SID otherwise
         uint8_t extended;   // Extended ID flag
         uint8_t length;     // Number of data bytes
-        BytesUnion8 data;    // 64 bits - lots of ways to access it.
+        uint32_t time;		// time since system start in millis
+        BytesUnion8 data;   // 64 bits - lots of ways to access it.
 } CAN_FRAME;
 
 typedef union {
@@ -51,8 +52,9 @@ typedef union {
 typedef struct{
         uint32_t id;        // EID if ide set, SID otherwise
         uint8_t extended;   // Extended ID flag
-        uint8_t length;     // Number of data bytes
-        BytesUnion64 data;    // 64 bits - lots of ways to access it.
+        uint32_t length;    // Number of data bytes
+        uint32_t time;		// time since system start in millis
+        BytesUnion64 data;  // 64 bits - lots of ways to access it.
 } CAN_FD_FRAME;
 
 typedef union{
