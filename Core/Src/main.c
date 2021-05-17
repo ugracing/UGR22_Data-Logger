@@ -185,7 +185,7 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "pvdwrk.csv\0";
+  	  char myPath[] = "test1.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -440,9 +440,9 @@ static void MX_FDCAN1_Init(void)
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
   hfdcan1.Init.NominalPrescaler = 1;
-  hfdcan1.Init.NominalSyncJumpWidth = 50;
-  hfdcan1.Init.NominalTimeSeg1 = 109;
-  hfdcan1.Init.NominalTimeSeg2 = 50;
+  hfdcan1.Init.NominalSyncJumpWidth = 23;
+  hfdcan1.Init.NominalTimeSeg1 = 56;
+  hfdcan1.Init.NominalTimeSeg2 = 23;
   hfdcan1.Init.DataPrescaler = 1;
   hfdcan1.Init.DataSyncJumpWidth = 5;
   hfdcan1.Init.DataTimeSeg1 = 10;
