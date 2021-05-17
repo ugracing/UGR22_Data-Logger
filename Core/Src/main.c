@@ -299,13 +299,13 @@ int main(void)
 		  lTime.Hours += LocalTime % 60;
 
 		  //date/time, CANID, Data
-		  CFDW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
+		  CW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
 				  CanFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
-			  CFDW += sprintf(CanWrite + CFDW, "%x", CanFrame.data.bytes[i]);
+			  CW += sprintf(CanWrite + CW, "%x", CanFrame.data.bytes[i]);
 		  }
-		  WriteToBuff(CanWrite, CFDW);
+		  WriteToBuff(CanWrite, CW);
 		  CAN_Flag = 0;
 	  }
 	  //WriteToBuff(A, 2);
