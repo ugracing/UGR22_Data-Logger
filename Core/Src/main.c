@@ -282,8 +282,8 @@ int main(void)
 		  for(int i = 0; i < CanFDFrame.length; i++){
 			  CFDW += sprintf(CanFDWrite + CFDW, "%x", CanFDFrame.data.bytes[i]);
 		  }
+		  sprintf(CanFDWrite + CFDW, "\n\r");
 		  WriteToBuff(CanFDWrite, CFDW);
-
 		  FDCAN_Flag = 0;
 	  }
 	  if(CAN_Flag){
@@ -305,6 +305,7 @@ int main(void)
 		  for(int i = 0; i < CanFDFrame.length; i++){
 			  CW += sprintf(CanWrite + CW, "%x", CanFrame.data.bytes[i]);
 		  }
+		  sprintf(CanWrite + CW, "\n\r");
 		  WriteToBuff(CanWrite, CW);
 		  CAN_Flag = 0;
 	  }
