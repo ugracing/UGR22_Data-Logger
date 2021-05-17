@@ -135,6 +135,7 @@ int main(void)
   MX_SPI1_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
+  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
   //Telemetry
   NRF24_begin(TELE_CE_GPIO_Port, TELE_CS_Pin, TELE_CE_Pin, hspi1);
     nrf24_DebugUART_Init(huart3);
@@ -184,7 +185,7 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "pvd4.csv\0";
+  	  char myPath[] = "pvdwrk.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -227,15 +228,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (end_flag){
 
-	  /*if(GPS_flag){
+	  if(GPS_flag){
 		  WriteToBuff(rxBuf, sizeof(rxBuf));
 		  GPS_flag=0;
-	  }*/
-	  if(NRF24_write(myTxData, 32)){
+	  }
+	  /*if(NRF24_write(myTxData, 32)){
 		  	  printf("TeleSending\n\r");
 	  		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 	  		  HAL_Delay(1000);
-	  	  }
+	  	  }*/
 	  /*HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
@@ -251,9 +252,10 @@ int main(void)
     /* USER CODE BEGIN 3 */
   }
 
-    f_write(&myFILE, close_msg, strlen(close_msg), &testByte);
-    f_close(&myFILE);
-    printf("File closed\n");
+    //f_write(&myFILE, close_msg, strlen(close_msg), &testByte);
+    //f_close(&myFILE);
+    HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+    //printf("File closed\n");
 
   /* USER CODE END 3 */
 }
@@ -809,6 +811,7 @@ void HAL_PWR_PVDCallback (void)
   /* NOTE : This function should not be modified, when the callback is needed,
             the HAL_PWR_PVDCallback can be implemented in the user file
   */
+	//HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
 	end_flag = 0;
 }
 /* USER CODE END 4 */
