@@ -280,7 +280,7 @@ int main(void)
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
 				  CanFDFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
-			  CFDW += sprintf(CanFDWrite + CFDW, "%x", CanFDFrame.data.bytes[i]);
+			  CFDW += sprintf(CanFDWrite + CFDW, "%c", CanFDFrame.data.bytes[i]);
 		  }
 		  CFDW += sprintf(CanFDWrite + CFDW, "\n\r");
 		  WriteToBuff(CanFDWrite, CFDW);
@@ -303,7 +303,7 @@ int main(void)
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
 				  CanFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
-			  CW += sprintf(CanWrite + CW, "%x", CanFrame.data.bytes[i]);
+			  CW += sprintf(CanWrite + CW, "%c", CanFrame.data.bytes[i]);
 		  }
 		  CW += sprintf(CanWrite + CW, "\n\r");
 		  WriteToBuff(CanWrite, CW);
