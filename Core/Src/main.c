@@ -185,7 +185,7 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "test1.csv\0";
+  	  char myPath[] = "test.csv\0";
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 

@@ -60,7 +60,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 						CanFrame.length = RxHeader.DataLength;
 						CanFrame.time = time;
 						CAN_Flag = 1;
-						memcpy(CanFrame.data.bytes, RxData, CanFrame.length);
+						memcpy(&CanFrame.data.bytes, RxData, CanFrame.length);
 						if(RxHeader.IdType == FDCAN_EXTENDED_ID){
 							CanFrame.extended = 1;
 						}
@@ -73,7 +73,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 						CanFDFrame.length = RxHeader.DataLength;
 						CanFDFrame.time = time;
 						FDCAN_Flag = 1;
-						memcpy(CanFDFrame.data.bytes, RxData, CanFDFrame.length);
+						memcpy(&CanFDFrame.data.bytes, RxData, CanFDFrame.length);
 						if(RxHeader.IdType == FDCAN_EXTENDED_ID){
 							CanFDFrame.extended = 1;
 						}
