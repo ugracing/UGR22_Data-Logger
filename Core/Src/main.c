@@ -266,7 +266,7 @@ int main(void)
   int CW = 0;
   char CanFDWrite[400];
   int CFDW = 0;
-  int AllowedTele = 10;
+  int AllowedTele = 1;
   int BuffIndex = 0;
   int Txcnt = 0;
   int TxDataSpace = 0;
