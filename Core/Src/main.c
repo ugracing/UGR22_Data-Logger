@@ -286,7 +286,7 @@ int main(void)
 	  }
 	  
     r_end = HAL_GetTick();
-    if(r_start - r_end > radiodelay){
+    if(r_start - r_end > radiodelay && FDBuffer[0].id != 0){
       r_start = HAL_GetTick();
       for(int i = 0; i < AllowedTele; i++){
         //make packet (Time ID data)
