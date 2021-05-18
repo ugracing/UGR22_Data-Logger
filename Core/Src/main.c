@@ -300,20 +300,20 @@ int main(void)
           Txcnt = 0;
           if(FDBuffer[BuffIndex].length - TxDataSpace > 32){
             for(int i = 0; i < 32; i++){
-              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i]);
+              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace]);
             }
             Txcnt = 0;
             i++;
             NRF24_write(myTxData, 32);
             for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace+32; i++){
-              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i]);
+              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace + 32]);
             }
             i++;
-            NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace+32);
+            NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace + 32);
           }else{
             Txcnt = 0;
             for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace; i++){
-              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i]);
+              Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace]);
             }
             i++;
             NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace);
