@@ -138,7 +138,7 @@ int main(void)
   HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
   //Telemetry
   NRF24_begin(TELE_CE_GPIO_Port, TELE_CS_Pin, TELE_CE_Pin, hspi1);
-    nrf24_DebugUART_Init(huart3);
+    //nrf24_DebugUART_Init(huart3);
 
 
 
