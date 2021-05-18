@@ -208,16 +208,16 @@ int main(void)
       f_close(&Config);
       //MAKE NEW FILE INCREMENTED BY 1
       
-      strcpy(FilePath,Filename)
+      strcpy(FilePath,Filename);
       int FilePathLen = strlen(Filename);
       sprintf(FilePath + FilePathLen, "%i.csv",fileNum);
-      while(f_open(&myFILE, myPath, FA_READ) == FR_OK){
+      while(f_open(&myFILE, FilePath, FA_READ) == FR_OK){
     	  f_close(&myFILE);
         fileNum++;
-        strcpy(FilePath,Filename)
+        strcpy(FilePath,Filename);
         sprintf(FilePath + FilePathLen, "%i.csv",fileNum);
       }
-      f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+      f_open(&myFILE, FilePath, FA_WRITE | FA_CREATE_ALWAYS);
 
   }
 
@@ -243,7 +243,7 @@ int main(void)
 
   CAN_FD_FRAME FDBuffer[50] = {0};
   CAN_FRAME Buffer[50] = {0};
-  uint32_t Tele_IDs[50] = 0;
+  uint32_t Tele_IDs[50] = {0};
   Tele_IDs[0] = 0x321;
 
   sTime.SecondFraction = 999;
@@ -280,7 +280,7 @@ int main(void)
 		  WriteToBuff(rxBuf, sizeof(rxBuf));
 		  GPS_flag=0;
 	  }
-	  
+
     for(int i = 0; i < AllowedTele; i++){
       //make packet (Time ID data)
       Txcnt = sprintf(myTxData,"%u %u",FDBuffer[BuffIndex].time, FDBuffer[BuffIndex].id);
@@ -335,6 +335,7 @@ int main(void)
 
 	  printf("Date:%u Month:%u Year:%u\n", sDate.Date, sDate.Month, sDate.Year);
 	  printf("Hours:%u Minutes:%u Seconds:%u\n", sTime.Hours, sTime.Minutes, sTime.Seconds);*/
+
 	  if(FDCAN_Flag){
 
 		  RTC_TimeTypeDef lTime = sTime;
@@ -420,11 +421,13 @@ TeleDone:
 	  //HAL_Delay(1000);
 	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     /* USER CODE END WHILE */
-    EndTime = HAL_GetTick()
+    EndTime = HAL_GetTick();
     if(StartTime - EndTime > LoopTime + 5){
       AllowedTele--;
-    }elif(StartTime - EndTime < LoopTime){
+    }else if (StartTime - EndTime < LoopTime){
       AllowedTele++;
+    }if (AllowedTele<1){
+    	AllowedTele = 1;
     }
     /* USER CODE BEGIN 3 */
 }
