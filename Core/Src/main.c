@@ -156,7 +156,7 @@ int main(void)
   FDCAN_Config(&hfdcan1);
   //GPS DMA
   HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
-  //HAL_Delay(1000);//GPS required this in testing, maybe remove?
+  HAL_Delay(1000);//GPS required this in testing, maybe remove?
   //variables required for 10Hz GPS
   uint16_t measRate = 100;
   uint16_t navRate = 1;
