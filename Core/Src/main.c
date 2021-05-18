@@ -187,7 +187,8 @@ int main(void)
 
   if(f_mount(&myFATAFS, SDPath, 1) == FR_OK){
   	  //HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-  	  char myPath[] = "test.csv\0";
+  	  char Filename[20] = "test";
+      char FilePath[150];
       char ConfigPath[] ="Config.csv\0";
       char ConfigParams[1000];
 
@@ -206,9 +207,15 @@ int main(void)
       }
       f_close(&Config);
       //MAKE NEW FILE INCREMENTED BY 1
+      
+      strcpy(FilePath,Filename)
+      int FilePathLen = strlen(Filename);
+      sprintf(FilePath + FilePathLen, "%i.csv",fileNum);
       while(f_open(&myFILE, myPath, FA_READ) == FR_OK){
     	  f_close(&myFILE);
-
+        fileNum++;
+        strcpy(FilePath,Filename)
+        sprintf(FilePath + FilePathLen, "%i.csv",fileNum);
       }
       f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
 
