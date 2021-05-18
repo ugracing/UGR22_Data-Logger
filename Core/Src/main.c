@@ -308,7 +308,6 @@ int main(void)
             for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace+32; i++){
               Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace + 32]);
             }
-            Txcnt += sprintf(myTxData + Txcnt, "\n\r");
             i++;
             NRF24_write(myTxData, 32);
           }else{
@@ -324,7 +323,7 @@ int main(void)
           for(int i = 0; i < FDBuffer[BuffIndex].length; i++){
             Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i]);
           }
-          NRF24_write(myTxData, FDBuffer[BuffIndex].length + (32 - TxDataSpace));
+          NRF24_write(myTxData, 32);//FDBuffer[BuffIndex].length + (32 - TxDataSpace)
         }
         BuffIndex++;
         if(FDBuffer[BuffIndex].id == 0){
