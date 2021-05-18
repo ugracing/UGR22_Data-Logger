@@ -285,37 +285,42 @@ int main(void)
       //make packet (Time ID data)
       Txcnt = sprintf(myTxData,"%u %u",FDBuffer[BuffIndex].time, FDBuffer[BuffIndex].id);
       TxDataSpace = 32 - Txcnt;
-      if(CanFDFrame.length > TxDataSpace){
+      if(FDBuffer[BuffIndex].length > TxDataSpace){
         for(int i = 0; i < TxDataSpace; i++){
-          Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          Txcnt += sprintf(myTxData + Txcnt, "%x", FDBuffer[BuffIndex].data.bytes[i]);
         }
         NRF24_write(myTxData, 32);
         Txcnt = 0;
-        if(CanFDFrame.length - TxDataSpace > 32){
+        if(FDBuffer[BuffIndex].length - TxDataSpace > 32){
           for(int i = 0; i < 32; i++){
-            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+            Txcnt += sprintf(myTxData + Txcnt, "%x", FDBuffer[BuffIndex].data.bytes[i]);
           }
           Txcnt = 0;
           i++;
           NRF24_write(myTxData, 32);
-          for(int i = 0; i < CanFDFrame.length - TxDataSpace+32; i++){
-            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace+32; i++){
+            Txcnt += sprintf(myTxData + Txcnt, "%x", FDBuffer[BuffIndex].data.bytes[i]);
           }
           i++;
-          NRF24_write(myTxData, CanFDFrame.length - TxDataSpace+32);
+          NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace+32);
         }else{
           Txcnt = 0;
-          for(int i = 0; i < CanFDFrame.length - TxDataSpace; i++){
-            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace; i++){
+            Txcnt += sprintf(myTxData + Txcnt, "%x", FDBuffer[BuffIndex].data.bytes[i]);
           }
           i++;
-          NRF24_write(myTxData, CanFDFrame.length - TxDataSpace);
+          NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace);
         }
-      }else{
-        for(int i = 0; i < CanFDFrame.length; i++){
-          Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+      }
+      else{
+        for(int i = 0; i < FDBuffer[BuffIndex].length; i++){
+          Txcnt += sprintf(myTxData + Txcnt, "%x", FDBuffer[BuffIndex].data.bytes[i]);
         }
-        NRF24_write(myTxData, CanFDFrame.length + (32 - TxDataSpace));
+        NRF24_write(myTxData, FDBuffer[BuffIndex].length + (32 - TxDataSpace));
+      }
+      BuffIndex++;
+      if(FDBuffer[BuffIndex].id == 0){
+        BuffIndex = 0;
       }
     }
     
