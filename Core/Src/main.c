@@ -94,6 +94,7 @@ char myTxData[32] = "The telemetry is working!";
 
 int end_flag = 1;
 char close_msg[] = "\n\r emergency shutdown";
+int fileNum = 1;
 /* USER CODE END 0 */
 
 /**
@@ -204,7 +205,13 @@ int main(void)
         f_read(&Config, ConfigParams, strlen(ConfigParams), &ConfByteR);
       }
       f_close(&Config);
-  	  f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+      //MAKE NEW FILE INCREMENTED BY 1
+      while(f_open(&myFILE, myPath, FA_READ) == FR_OK){
+    	  f_close(&myFILE);
+
+      }
+      f_open(&myFILE, myPath, FA_WRITE | FA_CREATE_ALWAYS);
+
   }
 
   	  //write speed test
