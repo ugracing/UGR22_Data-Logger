@@ -225,6 +225,11 @@ int main(void)
   extern int FDCAN_Flag;
   extern int CAN_Flag;
 
+
+  CAN_FD_FRAME FDBuffer[50] = {0};
+  CAN_FRAME Buffer[50] = {0};
+  uint32_t Tele_IDs[50] = 0;
+
   sTime.SecondFraction = 999;
   uint32_t LocalTime = HAL_GetTick();
   HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
@@ -274,7 +279,7 @@ int main(void)
 		  lTime.Minutes += LocalTime % 60;
 		  LocalTime = LocalTime/60;
 		  lTime.Hours += LocalTime % 60;
-
+      //Write to SD Card
 		  //date/time, CANID, Data
 		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
@@ -284,6 +289,24 @@ int main(void)
 		  }
 		  CFDW += sprintf(CanFDWrite + CFDW, "\n\r");
 		  WriteToBuff(CanFDWrite, CFDW);
+
+      //Write to telemetry buffer
+      
+      for(int i = 0; i <50; i++){
+        if(CanFDFrame.id == Tele_IDs[i]){ //check if frame should be checked
+          for(int j = 0; j < 50; j++){
+            if(FDBuffer[j].id == CanFDFrame.id){
+              FDBuffer[j] = CanFDFrame;
+              goto TeleDoneFD;
+            }
+            if(FDBuffer[j].id == 0){
+              FDBuffer[j] = CanFDFrame;
+              goto TeleDoneFD;
+            }
+          }
+        }
+      }
+TeleDoneFD:
 		  FDCAN_Flag = 0;
 	  }
 	  if(CAN_Flag){
@@ -307,6 +330,23 @@ int main(void)
 		  }
 		  CW += sprintf(CanWrite + CW, "\n\r");
 		  WriteToBuff(CanWrite, CW);
+
+      for(int i = 0; i <50; i++){
+        if(CanFrame.id == Tele_IDs[i]){ //check if frame should be checked
+          for(int j = 0; j < 50; j++){
+            if(Buffer[j].id == CanFrame.id){
+              Buffer[j] = CanFrame;     //if its already in the buffer replace it
+              goto TeleDone;
+            }
+            if(Buffer[j].id == 0){
+              Buffer[j] = CanFrame;     //if you get to the end of the defined packets withoout finding anything add the packet on the end
+              goto TeleDone;
+            }
+          }
+        }
+      }
+      printf("couldnt track, id buffer too full :(");
+TeleDone:
 		  CAN_Flag = 0;
 	  }
 	  //WriteToBuff(A, 2);
