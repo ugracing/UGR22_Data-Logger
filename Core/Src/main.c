@@ -290,7 +290,7 @@ int main(void)
       r_start = HAL_GetTick();
       for(int i = 0; i < AllowedTele; i++){
         //make packet (Time ID data)
-        Txcnt = sprintf(myTxData,"%u %x",FDBuffer[BuffIndex].time, FDBuffer[BuffIndex].id);
+        Txcnt = sprintf(myTxData,"%u %x ",FDBuffer[BuffIndex].time, FDBuffer[BuffIndex].id);
         TxDataSpace = 32 - Txcnt;
         if(FDBuffer[BuffIndex].length > TxDataSpace){
           for(int i = 0; i < TxDataSpace; i++){
@@ -309,7 +309,7 @@ int main(void)
               Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace + 32]);
             }
             i++;
-            NRF24_write(myTxData, FDBuffer[BuffIndex].length - TxDataSpace + 32);
+            NRF24_write(myTxData, FDBuffer[BuffIndex].length - (TxDataSpace + 32));
           }else{
             Txcnt = 0;
             for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace; i++){
