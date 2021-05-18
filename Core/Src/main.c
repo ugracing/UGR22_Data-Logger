@@ -309,7 +309,7 @@ int main(void)
               Txcnt += sprintf(myTxData + Txcnt, "%c", FDBuffer[BuffIndex].data.bytes[i + TxDataSpace + 32]);
             }
             i++;
-            NRF24_write(myTxData, FDBuffer[BuffIndex].length - (TxDataSpace + 32));
+            NRF24_write(myTxData, 32);//FDBuffer[BuffIndex].length - (TxDataSpace + 32) CHANGE BACK TO THIS
           }else{
             Txcnt = 0;
             for(int i = 0; i < FDBuffer[BuffIndex].length - TxDataSpace; i++){
