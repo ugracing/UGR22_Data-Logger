@@ -230,6 +230,7 @@ int main(void)
   CAN_FD_FRAME FDBuffer[50] = {0};
   CAN_FRAME Buffer[50] = {0};
   uint32_t Tele_IDs[50] = 0;
+  Tele_IDs[0] = 0x321;
 
   sTime.SecondFraction = 999;
   uint32_t LocalTime = HAL_GetTick();
