@@ -90,7 +90,7 @@ static void MX_RTC_Init(void);
 /* USER CODE BEGIN 0 */
 //Telemetry stuff
 uint64_t TxpipeAddrs = 0x11223344AA;
-char myTxData[32] = "The telemetry is working!";
+char myTxData[32];
 
 int end_flag = 1;
 char close_msg[] = "\n\r emergency shutdown";
@@ -266,18 +266,64 @@ int main(void)
   int CW = 0;
   char CanFDWrite[400];
   int CFDW = 0;
+  int AllowedTele = 10;
+  int BuffIndex = 0;
+  int Txcnt = 0;
+  int TxDataSpace = 0;
+  uint32_t LoopTime = 10; //time a loop should take (this is aguess should test avg time)
+  uint32_t StartTime = 0;
+  uint32_t EndTime = 0;
 
   while (end_flag){
-
+    StartTime = HAL_GetTick();
 	  if(GPS_flag){
 		  WriteToBuff(rxBuf, sizeof(rxBuf));
 		  GPS_flag=0;
 	  }
-	  /*if(NRF24_write(myTxData, 32)){
-		  	  printf("TeleSending\n\r");
-	  		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
-	  		  HAL_Delay(1000);
-	  	  }*/
+	  
+    for(int i = 0; i < AllowedTele; i++){
+      //make packet (Time ID data)
+      Txcnt = sprintf(myTxData,"%u %u",FDBuffer[BuffIndex].time, FDBuffer[BuffIndex].id);
+      TxDataSpace = 32 - Txcnt;
+      if(CanFDFrame.length > TxDataSpace){
+        for(int i = 0; i < TxDataSpace; i++){
+          Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+        }
+        NRF24_write(myTxData, 32);
+        Txcnt = 0;
+        if(CanFDFrame.length - TxDataSpace > 32){
+          for(int i = 0; i < 32; i++){
+            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          }
+          Txcnt = 0;
+          i++;
+          NRF24_write(myTxData, 32);
+          for(int i = 0; i < CanFDFrame.length - TxDataSpace+32; i++){
+            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          }
+          i++;
+          NRF24_write(myTxData, CanFDFrame.length - TxDataSpace+32);
+        }else{
+          Txcnt = 0;
+          for(int i = 0; i < CanFDFrame.length - TxDataSpace; i++){
+            Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+          }
+          i++;
+          NRF24_write(myTxData, CanFDFrame.length - TxDataSpace);
+        }
+      }else{
+        for(int i = 0; i < CanFDFrame.length; i++){
+          Txcnt += sprintf(myTxData + Txcnt, "%x", CanFDFrame.data.bytes[i]);
+        }
+        NRF24_write(myTxData, CanFDFrame.length + (32 - TxDataSpace));
+      }
+    }
+    
+    // if(NRF24_write(myTxData, 32)){
+		//   	  printf("TeleSending\n\r");
+	  // 		  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
+	  // 		  HAL_Delay(1000);
+	  // 	  }
 	  /*HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	  HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 
@@ -298,7 +344,7 @@ int main(void)
       //Write to SD Card
 		  //date/time, CANID, Data
 		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
-				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
+				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
 				  CanFDFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
 			  CFDW += sprintf(CanFDWrite + CFDW, "%c", CanFDFrame.data.bytes[i]);
@@ -339,7 +385,7 @@ TeleDoneFD:
 
 		  //date/time, CANID, Data
 		  CW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
-				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
+				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
 				  CanFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
 			  CW += sprintf(CanWrite + CW, "%c", CanFrame.data.bytes[i]);
@@ -369,7 +415,12 @@ TeleDone:
 	  //HAL_Delay(1000);
 	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     /* USER CODE END WHILE */
-
+    EndTime = HAL_GetTick()
+    if(StartTime - EndTime > LoopTime + 5){
+      AllowedTele--;
+    }elif(StartTime - EndTime < LoopTime){
+      AllowedTele++;
+    }
     /* USER CODE BEGIN 3 */
 }
 
