@@ -135,6 +135,7 @@ int main(void)
   MX_SPI1_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
+  //HAL_Delay(1000);//NEEDED FOR USB MASS STORAGE TO WORK
   HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_0);
   //Telemetry
   NRF24_begin(TELE_CE_GPIO_Port, TELE_CS_Pin, TELE_CE_Pin, hspi1);
@@ -155,7 +156,7 @@ int main(void)
   FDCAN_Config(&hfdcan1);
   //GPS DMA
   HAL_UART_Receive_DMA(&huart3, (uint8_t *)rxBuf, BUFFLENGTH);
-  HAL_Delay(1000);//GPS required this in testing, maybe remove?
+  //HAL_Delay(1000);//GPS required this in testing, maybe remove?
   //variables required for 10Hz GPS
   uint16_t measRate = 100;
   uint16_t navRate = 1;
@@ -276,7 +277,7 @@ int main(void)
 		  lTime.Hours += LocalTime % 60;
 
 		  //date/time, CANID, Data
-		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
+		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
 				  CanFDFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
@@ -299,7 +300,7 @@ int main(void)
 		  lTime.Hours += LocalTime % 60;
 
 		  //date/time, CANID, Data
-		  CW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,%u,",
+		  CW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
 				  sDate.Date,sDate.Month,sDate.Year, sTime.Hours,sTime.Minutes,sTime.Seconds,sTime.SubSeconds,
 				  CanFrame.id);
 		  for(int i = 0; i < CanFDFrame.length; i++){
@@ -770,9 +771,9 @@ static void MX_DMA_Init(void)
   __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
-  /* DMA1_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 1, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
+  /* DMA1_Stream1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
 
 }
 
