@@ -428,14 +428,7 @@ TeleDone:
 	  //HAL_Delay(1000);
 	  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
     /* USER CODE END WHILE */
-    EndTime = HAL_GetTick();
-    if(StartTime - EndTime > LoopTime + 5){
-      AllowedTele--;
-    }else if(StartTime - EndTime < LoopTime){
-      AllowedTele++;
-    }if (AllowedTele<1){
-    	AllowedTele = 1;
-    }
+
     /* USER CODE BEGIN 3 */
 }
 
@@ -761,7 +754,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_256;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
