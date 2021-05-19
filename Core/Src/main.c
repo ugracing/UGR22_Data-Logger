@@ -253,8 +253,18 @@ int main(void)
 
   sTime.SubSeconds -= LocalTime % 1000;
   LocalTime = LocalTime/1000;
+
+  if(sTime.Seconds < LocalTime % 60){
+	  sTime.Seconds += 60;
+	  sTime.Minutes -= 1;
+  }
   sTime.Seconds -= LocalTime % 60;
   LocalTime = LocalTime/60;
+
+  if(sTime.Minutes < LocalTime % 60){
+	  sTime.Minutes += 60;
+	  sTime.Hours -= 1;
+  }
   sTime.Minutes -= LocalTime % 60;
   LocalTime = LocalTime/60;
   sTime.Hours -= LocalTime % 60;
@@ -350,8 +360,16 @@ int main(void)
 		  lTime.SubSeconds += LocalTime % 1000;
 		  LocalTime = LocalTime/1000;
 		  lTime.Seconds += LocalTime % 60;
+		  if(lTime.Seconds >= 60){
+			  lTime.Seconds -= 60;
+			  lTime.Minutes += 1;
+		  }
 		  LocalTime = LocalTime/60;
 		  lTime.Minutes += LocalTime % 60;
+		  if(lTime.Minutes >= 60){
+			  lTime.Minutes -= 60;
+			  lTime.Hours += 1;
+		  }
 		  LocalTime = LocalTime/60;
 		  lTime.Hours += LocalTime % 60;
       //Write to SD Card
@@ -391,8 +409,16 @@ TeleDoneFD:
 		  lTime.SubSeconds += LocalTime % 1000;
 		  LocalTime = LocalTime/1000;
 		  lTime.Seconds += LocalTime % 60;
+		  if(lTime.Seconds >= 60){
+			  lTime.Seconds -= 60;
+			  lTime.Minutes += 1;
+		  }
 		  LocalTime = LocalTime/60;
 		  lTime.Minutes += LocalTime % 60;
+		  if(lTime.Minutes >= 60){
+			  lTime.Minutes -= 60;
+			  lTime.Hours += 1;
+		  }
 		  LocalTime = LocalTime/60;
 		  lTime.Hours += LocalTime % 60;
 
@@ -652,8 +678,7 @@ static void MX_RTC_Init(void)
 
   /* USER CODE END RTC_Init 0 */
 
-  RTC_TimeTypeDef sTime = {0};
-  RTC_DateTypeDef sDate = {0};
+
 
   /* USER CODE BEGIN RTC_Init 1 */
 
@@ -679,24 +704,7 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
-  sTime.Hours = 0;
-  sTime.Minutes = 0;
-  sTime.Seconds = 0;
-  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
-  sDate.Month = RTC_MONTH_JANUARY;
-  sDate.Date = 1;
-  sDate.Year = 0;
 
-  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN RTC_Init 2 */
 
   /* USER CODE END RTC_Init 2 */
@@ -983,7 +991,26 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
            the HAL_GPIO_EXTI_Callback could be implemented in the user file
    */
 
-  end_flag = 0;
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
+  sTime.Hours = 16;
+    sTime.Minutes = 8;
+    sTime.Seconds = 0;
+    sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+    sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+    if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+    {
+      Error_Handler();
+    }
+    sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY;
+    sDate.Month = RTC_MONTH_MAY;
+    sDate.Date = 19;
+    sDate.Year = 21;
+
+    if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+    {
+      Error_Handler();
+    }
 
 }
 void HAL_PWR_PVDCallback (void)
