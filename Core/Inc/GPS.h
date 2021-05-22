@@ -11,7 +11,7 @@
 #define INC_GPS_H_
 
 //defines
-#define BUFFLENGTH 40
+#define BUFFLENGTH 70
 //variables
 char rxBuf[BUFFLENGTH];
 //functions
