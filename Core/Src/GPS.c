@@ -121,9 +121,13 @@ void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
   //for(int i=0; i<BUFFLENGTH; i++){
   	  		  //printf("%c", rxBuf[i]);
   	  //}
+  printf("#\n\r");
   GPS_flag = 1;
   //WriteToBuff(rxBuf+70, BUFFLENGTH/2);
   //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);*/
   //printf("GPS Recieved\n");
 
+}
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	printf("##################\n\r");
 }
