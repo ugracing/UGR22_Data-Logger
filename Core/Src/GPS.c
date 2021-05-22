@@ -98,36 +98,17 @@ int get_date_time(UART_HandleTypeDef *huart){
 
 }
 
-int GPS_flag = 0;
+int GPS_flag1 = 0;
+int GPS_flag2 = 0;
 
-void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart)
-{
-  /* Prevent unused argument(s) compilation warning */
-  UNUSED(huart);
-
-  /* NOTE : This function should not be modified, when the callback is needed,
-            the HAL_UART_RxCpltCallback can be implemented in the user file.
-   */
- /* if(count%2){
-	  for(int i=0; i<BUFFLENGTH/2; i++){
-		  printf("%c", rxBuf[i]);
-	  }
-  }
-  else{
-	  for(int i=BUFFLENGTH/2; i<BUFFLENGTH; i++){
-	  		  printf("%c", rxBuf[i]);
-	  }
-  }*/
-  //for(int i=0; i<BUFFLENGTH; i++){
-  	  		  //printf("%c", rxBuf[i]);
-  	  //}
-  printf("#\n\r");
-  GPS_flag = 1;
-  //WriteToBuff(rxBuf+70, BUFFLENGTH/2);
-  //HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);*/
-  //printf("GPS Recieved\n");
-
+void HAL_UART_RxHalfCpltCallback(UART_HandleTypeDef *huart){
+  	/* Prevent unused argument(s) compilation warning */
+  	UNUSED(huart);
+  	memset(rxBuf+(BUFFLENGTH/2), 0, BUFFLENGTH/2);
+  	GPS_flag1 = 1;
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	printf("##################\n\r");
+	UNUSED(huart);
+	memset(rxBuf, 0, BUFFLENGTH/2);
+	GPS_flag2 = 1;
 }

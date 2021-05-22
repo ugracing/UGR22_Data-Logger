@@ -236,7 +236,8 @@ int main(void)
   	    f_write(&myFILE, myTime, strlen(myTime), &testByte);
         f_close(&myFILE);*/
 
-  extern int GPS_flag;
+  extern int GPS_flag1;
+  extern int GPS_flag2;
   extern int FDCAN_Flag;
   extern int CAN_Flag;
 
@@ -290,11 +291,17 @@ int main(void)
 
   while (end_flag){
     StartTime = HAL_GetTick();
-	  if(GPS_flag){
-		  WriteToBuff(rxBuf, sizeof(rxBuf));
-		  GPS_flag=0;
+    
+	  if(GPS_flag1){
+		  WriteToBuff(rxBuf, BUFFLENGTH/2);
+		  GPS_flag1=0;
 	  }
 	  
+    if(GPS_flag2){
+		  WriteToBuff(rxBuf+BUFFLENGTH/2, BUFFLENGTH/2);
+		  GPS_flag2=0;
+	  }
+
     r_end = HAL_GetTick();
     if(r_start - r_end > radiodelay && FDBuffer[0].id != 0){
       r_start = HAL_GetTick();
