@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "stdlib.h"
 #include "fatfs.h"
 #include "usb_device.h"
 
@@ -190,15 +191,14 @@ int main(void)
   	  char Filename[20] = "test";
       char FilePath[150];
       char ConfigPath[] ="Config.csv\0";
-      char ConfigParams[1000];
-
+      char ConfigParams[20000];
       //Tries to open config File
       if(f_open(&Config, ConfigPath, FA_READ) == FR_NO_FILE){
-        //If file doesnt exist creates a file using hard coded defualts and passes those to internal config array
+        //If file doesn't exist creates a file using hard coded defaults and passes those to internal config array
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
-        sprintf(ConfigParams, "ID,Device,Bytes,Rate(HZ),Type,Description\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,0.20,uint32_t,HIGH:FileNO LOW:millis,\n");
+        sprintf(ConfigParams, "ID,Device,Bytes,Distribution,Instruction,Description\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%u %u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
       }else{
@@ -208,6 +208,32 @@ int main(void)
       f_close(&Config);
       //MAKE NEW FILE INCREMENTED BY 1
       
+      //Fill ReadInstructions
+      char delim[] = ",";
+      uint32_t i,j = 0;
+      char *ptr = strtok(ConfigParams, delim);
+
+      while(ptr != NULL && j < (sizeof(ReadInstruction)/sizeof(*Configs))){
+		switch(i){
+			case 0:
+				Configs[j].id = atoi(ptr);
+			case 2:
+				Configs[j].Bytes = atoi(ptr);
+			case 3:
+				Configs[j].Distribution = atoi(ptr);
+			case 4:
+				sprintf(Configs[j].Intsructions, "'%s',", ptr);
+			case 6:
+				j++;
+				Configs[j].id = atoi(ptr);
+				i = 0;
+		}
+
+		ptr = strtok(NULL, delim);
+		i++;
+      }
+
+
       strcpy(FilePath,Filename);
       int FilePathLen = strlen(Filename);
       sprintf(FilePath + FilePathLen, "%i.csv",fileNum);
@@ -433,9 +459,11 @@ TeleDoneFD:
 		  CW = sprintf(CanWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
 				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
 				  CanFrame.id);
+
 		  for(int i = 0; i < CanFDFrame.length; i++){
 			  CW += sprintf(CanWrite + CW, "%c", CanFrame.data.bytes[i]);
 		  }
+
 		  CW += sprintf(CanWrite + CW, "\n\r");
 		  WriteToBuff(CanWrite, CW);
 

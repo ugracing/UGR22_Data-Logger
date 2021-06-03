@@ -6,6 +6,7 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 #include <CANFD.h>
 #include <buffer.h>
 #include <myprintf.h>
@@ -46,6 +47,72 @@ void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 	  }
 	HAL_FDCAN_EnableTxDelayCompensation(hfdcan);
 
+}
+
+int numPlaces (int n) {
+	if (n < 10) return 1;
+	if (n < 100) return 2;
+	if (n < 1000) return 3;
+	if (n < 10000) return 4;
+	if (n < 100000) return 5;
+	if (n < 1000000) return 6;
+	if (n < 10000000) return 7;
+	if (n < 100000000) return 8;
+	if (n < 1000000000) return 9;
+	if (n < 10000000000) return 10;
+	if (n < 100000000000) return 11;
+	if (n < 1000000000000) return 12;
+	if (n < 10000000000000) return 13;
+	if (n < 100000000000000) return 14;
+	if (n < 1000000000000000) return 15;
+	return 16;
+}
+
+int CANFD_Data_Process(char WriteArray[], int StrIndex){
+	int found, i, size = 0;
+	char inst[128];
+
+	for(i = 0; i <(sizeof(ReadInstruction)/sizeof(*Configs)); i++){
+		if(CanFDFrame.id == Configs[i].id){
+			found = 1;
+			break;
+		}
+	}
+
+	if(found == 0){
+		for(int j = 0; j < CanFDFrame.length; j++){
+			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFDFrame.data.bytes[i]);
+		  }
+	}
+	if(found == 1){
+		char delim[] = " ";
+		sprintf(inst,"%s",Configs[i].Intsructions);
+		uint32_t k = 0;
+	    char *ptr = strtok(inst, delim);
+
+	    int digits = numPlaces(Configs[i].Distribution);
+
+	    while(ptr != NULL){
+
+			size = (Configs[i].Distribution/pow(10,digits - k))%10;
+
+			switch(size){
+				case 1:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.bytes[k]);
+				case 2:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.shorts[k]);
+				case 4:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.ints[k]);
+				case 8:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.longs[k]);
+			}
+
+	    	k++;
+	    	if(k == digits){
+	    		break;
+	    	}
+	    }
+	}
 }
 
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs)
