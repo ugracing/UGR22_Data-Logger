@@ -197,8 +197,8 @@ int main(void)
         //If file doesn't exist creates a file using hard coded defaults and passes those to internal config array
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
-        sprintf(ConfigParams, "ID,Device,Bytes,Distribution,Instruction,Description\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%u %u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
+        sprintf(ConfigParams, "ID(HEX),Device,Bytes,Distribution,Instruction,Description\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
       }else{
