@@ -72,7 +72,7 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 	int found, i, size = 0;
 	char inst[128];
 
-	for(i = 0; i <(sizeof(ReadInstruction)/sizeof(*Configs)); i++){
+	for(i = 0; i <(sizeof(*Configs)/sizeof(ReadInstruction)); i++){
 		if(CanFDFrame.id == Configs[i].id){
 			found = 1;
 			break;
@@ -81,7 +81,7 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 
 	if(found == 0){
 		for(int j = 0; j < CanFDFrame.length; j++){
-			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFDFrame.data.bytes[j]);
+			StrIndex += sprintf(WriteArray + StrIndex, "%X", CanFDFrame.data.bytes[j]);
 		}
 	}
 	if(found == 1){
@@ -94,7 +94,7 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 
 	    while(ptr != NULL){
 
-			size = (Configs[i].Distribution/pow(10,digits - c))%10;
+			size = (int)(Configs[i].Distribution/pow(10,digits - c - 1))%10;
 
 			switch(size){
 				case 1:
@@ -102,20 +102,20 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 					k++;
 					break;
 				case 2:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.shorts[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.shorts[k/2]);
 					k+=2;
 					break;
 				case 4:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.ints[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.ints[k/4]);
 					k+=4;
 					break;
 				case 8:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.longs[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.longs[k/8]);
 					k+=8;
 					break;
 			}
 			c++;
-	    	if(c > digits){
+	    	if(c == digits){
 	    		break;
 	    	}
 	    	ptr = strtok(NULL, delim);
@@ -128,7 +128,7 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 	int found, i, size = 0;
 	char inst[128];
 
-	for(i = 0; i <(sizeof(ReadInstruction)/sizeof(*Configs)); i++){
+	for(i = 0; i <(sizeof(*Configs)/sizeof(ReadInstruction)); i++){
 		if(CanFrame.id == Configs[i].id){
 			found = 1;
 			break;
@@ -137,7 +137,7 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 
 	if(found == 0){
 		for(int j = 0; j < CanFrame.length; j++){
-			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFrame.data.bytes[j]);
+			StrIndex += sprintf(WriteArray + StrIndex, "%X", CanFrame.data.bytes[j]);
 		  }
 	}
 	if(found == 1){
@@ -150,7 +150,7 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 
 	    while(ptr != NULL){
 
-			size = (Configs[i].Distribution/pow(10,digits - c))%10;
+			size = (int)(Configs[i].Distribution/pow(10,digits - c - 1))%10;
 
 			switch(size){
 				case 1:
@@ -158,20 +158,20 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 					k++;
 					break;
 				case 2:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.shorts[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.shorts[k/2]);
 					k+=2;
 					break;
 				case 4:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.ints[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.ints[k/4]);
 					k+=4;
 					break;
 				case 8:
-					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.longs[k]);
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.longs[k/8]);
 					k+=8;
 					break;
 			}
 			c++;
-	    	if(c > digits){
+	    	if(c == digits){
 	    		break;
 	    	}
 	    	ptr = strtok(NULL, delim);

@@ -13,8 +13,8 @@
 #include <myfatfs.h>
 
 //defines
-//#define Bufflength 131072
-#define Bufflength 1024
+#define Bufflength 131072
+//#define Bufflength 1024
 
 
 
@@ -31,6 +31,9 @@ typedef union {
     uint16_t s2;
     uint16_t s3;
   };
+  uint64_t longs[1];
+  uint32_t ints[2];
+  uint16_t shorts[4];
   uint8_t bytes[8];
 } BytesUnion8;
 

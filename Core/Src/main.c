@@ -212,21 +212,29 @@ int main(void)
       char delim[] = ",";
       uint32_t i,j = 0;
       char *ptr = strtok(ConfigParams, delim);
-
-      while(ptr != NULL && j < (sizeof(ReadInstruction)/sizeof(*Configs))){
+      //skip over header
+      for(int c = 0; c < 6; c++){
+    	  ptr = strtok(NULL, delim);
+      }
+      while(ptr != NULL && j < (sizeof(*Configs)/sizeof(ReadInstruction))){
 		switch(i){
 			case 0:
-				Configs[j].id = atoi(ptr);
+				Configs[j].id = (int)strtol(ptr, NULL, 0);
+				break;
 			case 2:
 				Configs[j].Bytes = atoi(ptr);
+				break;
 			case 3:
 				Configs[j].Distribution = atoi(ptr);
+				break;
 			case 4:
-				sprintf(Configs[j].Intsructions, "'%s',", ptr);
+				sprintf(Configs[j].Intsructions, "'%s'", ptr);
+				break;
 			case 6:
 				j++;
 				Configs[j].id = atoi(ptr);
 				i = 0;
+				break;
 		}
 
 		ptr = strtok(NULL, delim);
@@ -299,9 +307,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  char CanWrite[400];
+  char CanWrite[500];
   int CW = 0;
-  char CanFDWrite[400];
+  char CanFDWrite[1000];
   int CFDW = 0;
   int AllowedTele = 1;
   int BuffIndex = 0;
@@ -460,9 +468,7 @@ TeleDoneFD:
 				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
 				  CanFrame.id);
 
-		  for(int i = 0; i < CanFDFrame.length; i++){
-			  CW += sprintf(CanWrite + CW, "%c", CanFrame.data.bytes[i]);
-		  }
+		  CW = CAN_Data_Process(CanWrite, CW);
 
 		  CW += sprintf(CanWrite + CW, "\n\r");
 		  WriteToBuff(CanWrite, CW);

@@ -17,7 +17,7 @@ typedef struct{
 	uint32_t id;
 	uint32_t Bytes;
 	uint32_t Distribution;
-	char Intsructions[128] = {0};
+	char Intsructions[128];
 }ReadInstruction;
 
 FDCAN_RxHeaderTypeDef RxHeader;
