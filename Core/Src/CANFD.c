@@ -81,38 +81,103 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 
 	if(found == 0){
 		for(int j = 0; j < CanFDFrame.length; j++){
-			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFDFrame.data.bytes[i]);
-		  }
+			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFDFrame.data.bytes[j]);
+		}
 	}
 	if(found == 1){
 		char delim[] = " ";
 		sprintf(inst,"%s",Configs[i].Intsructions);
-		uint32_t k = 0;
+		uint32_t k,c = 0;
 	    char *ptr = strtok(inst, delim);
 
 	    int digits = numPlaces(Configs[i].Distribution);
 
 	    while(ptr != NULL){
 
-			size = (Configs[i].Distribution/pow(10,digits - k))%10;
+			size = (Configs[i].Distribution/pow(10,digits - c))%10;
 
 			switch(size){
 				case 1:
 					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.bytes[k]);
+					k++;
+					break;
 				case 2:
 					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.shorts[k]);
+					k+=2;
+					break;
 				case 4:
 					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.ints[k]);
+					k+=4;
+					break;
 				case 8:
 					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFDFrame.data.longs[k]);
+					k+=8;
+					break;
 			}
-
-	    	k++;
-	    	if(k == digits){
+			c++;
+	    	if(c > digits){
 	    		break;
 	    	}
+	    	ptr = strtok(NULL, delim);
 	    }
 	}
+	return StrIndex;
+}
+
+int CAN_Data_Process(char WriteArray[], int StrIndex){
+	int found, i, size = 0;
+	char inst[128];
+
+	for(i = 0; i <(sizeof(ReadInstruction)/sizeof(*Configs)); i++){
+		if(CanFrame.id == Configs[i].id){
+			found = 1;
+			break;
+		}
+	}
+
+	if(found == 0){
+		for(int j = 0; j < CanFrame.length; j++){
+			StrIndex += sprintf(WriteArray + StrIndex, "%x", CanFrame.data.bytes[j]);
+		  }
+	}
+	if(found == 1){
+		char delim[] = " ";
+		sprintf(inst,"%s",Configs[i].Intsructions);
+		uint32_t k,c = 0;
+	    char *ptr = strtok(inst, delim);
+
+	    int digits = numPlaces(Configs[i].Distribution);
+
+	    while(ptr != NULL){
+
+			size = (Configs[i].Distribution/pow(10,digits - c))%10;
+
+			switch(size){
+				case 1:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.bytes[k]);
+					k++;
+					break;
+				case 2:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.shorts[k]);
+					k+=2;
+					break;
+				case 4:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.ints[k]);
+					k+=4;
+					break;
+				case 8:
+					StrIndex += sprintf(WriteArray + StrIndex, ptr, CanFrame.data.longs[k]);
+					k+=8;
+					break;
+			}
+			c++;
+	    	if(c > digits){
+	    		break;
+	    	}
+	    	ptr = strtok(NULL, delim);
+	    }
+	}
+	return StrIndex;
 }
 
 void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs)
@@ -124,53 +189,7 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan1, uint32_t RxFifo0ITs
 					printf("Packet Acquired!\n");
 					if(RxHeader.FDFormat == FDCAN_CLASSIC_CAN){
 						CanFrame.id = RxHeader.Identifier;
-						switch(RxHeader.DataLength/65536){
-							case 1:
-								CanFrame.length = 1;
-								break;
-							case 2:
-								CanFrame.length = 2;
-								break;
-							case 3:
-								CanFrame.length = 3;
-								break;
-							case 4:
-								CanFrame.length = 4;
-								break;
-							case 5:
-								CanFrame.length = 5;
-								break;
-							case 6:
-								CanFrame.length = 6;
-								break;
-							case 7:
-								CanFrame.length = 7;
-								break;
-							case 8:
-								CanFrame.length = 8;
-								break;
-							case 9:
-								CanFrame.length = 12;
-								break;
-							case 10:
-								CanFrame.length = 16;
-								break;
-							case 11:
-								CanFrame.length = 20;
-								break;
-							case 12:
-								CanFrame.length = 24;
-								break;
-							case 13:
-								CanFrame.length = 32;
-								break;
-							case 14:
-								CanFrame.length = 48;
-								break;
-							case 15:
-								CanFrame.length = 64;
-								break;
-						}
+						CanFrame.length = RxHeader.DataLength/65536;
 						CanFrame.time = time;
 						CAN_Flag = 1;
 						memcpy(CanFrame.data.bytes, RxData, CanFrame.length);

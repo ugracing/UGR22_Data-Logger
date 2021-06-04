@@ -410,9 +410,9 @@ int main(void)
 		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
 				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
 				  CanFDFrame.id);
-		  for(int i = 0; i < CanFDFrame.length; i++){
-			  CFDW += sprintf(CanFDWrite + CFDW, "%c", CanFDFrame.data.bytes[i]);
-		  }
+
+		  CFDW = CANFD_Data_Process(CanFDWrite, CFDW);
+
 		  CFDW += sprintf(CanFDWrite + CFDW, "\n\r");
 		  WriteToBuff(CanFDWrite, CFDW);
 

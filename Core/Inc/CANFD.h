@@ -30,6 +30,7 @@ uint8_t RxData[64];
 
 //functions
 void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan);
+int CANFD_Data_Process(char WriteArray[], int StrIndex);
 int CAN_Data_Process(char WriteArray[], int StrIndex);
 int numPlaces (int n);
 
