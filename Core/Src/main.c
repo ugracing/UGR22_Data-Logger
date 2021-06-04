@@ -216,7 +216,7 @@ int main(void)
       for(int c = 0; c < 6; c++){
     	  ptr = strtok(NULL, delim);
       }
-      while(ptr != NULL && j < (sizeof(*Configs)/sizeof(ReadInstruction))){
+      while(ptr != NULL /*&& j < (sizeof(*Configs)/sizeof(ReadInstruction))*/){
 		switch(i){
 			case 0:
 				Configs[j].id = (int)strtol(ptr, NULL, 0);
