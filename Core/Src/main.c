@@ -198,7 +198,7 @@ int main(void)
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
         sprintf(ConfigParams, "ID,Device,Bytes,Distribution,Instruction,Description\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%u %u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
       }else{
@@ -216,7 +216,7 @@ int main(void)
       for(int c = 0; c < 6; c++){
     	  ptr = strtok(NULL, delim);
       }
-      while(ptr != NULL && j < (sizeof(*Configs)/sizeof(ReadInstruction))){
+      while(ptr != NULL /*&& j < (sizeof(*Configs)/sizeof(ReadInstruction))*/){
 		switch(i){
 			case 0:
 				Configs[j].id = (int)strtol(ptr, NULL, 0);
