@@ -191,7 +191,7 @@ int main(void)
   	  char Filename[20] = "test";
       char FilePath[150];
       char ConfigPath[] ="Config.csv\0";
-      char ConfigParams[20000];
+      char ConfigParams[20000] = {0};
       //Tries to open config File
       if(f_open(&Config, ConfigPath, FA_READ) == FR_NO_FILE){
         //If file doesn't exist creates a file using hard coded defaults and passes those to internal config array
