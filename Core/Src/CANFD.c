@@ -20,14 +20,26 @@ void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 	  /* Configure Rx filter */
 	  sFilterConfig.IdType = FDCAN_STANDARD_ID;
 	  sFilterConfig.FilterIndex = 0;
-	  sFilterConfig.FilterType = FDCAN_FILTER_MASK;
+	  sFilterConfig.FilterType = FDCAN_FILTER_RANGE;
 	  sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-	  sFilterConfig.FilterID1 = 0x321;
+	  sFilterConfig.FilterID1 = 0x0;
 	  sFilterConfig.FilterID2 = 0x7FF;
+
+	  FDCAN_FilterTypeDef eFilterConfig;
+	  eFilterConfig.IdType = FDCAN_EXTENDED_ID;
+	  eFilterConfig.FilterIndex = 8;
+	  eFilterConfig.FilterType = FDCAN_FILTER_RANGE;
+	  eFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
+	  eFilterConfig.FilterID1 = 0x0;
+	  eFilterConfig.FilterID2 = 0x1FFFFFFF;
 	  if (HAL_FDCAN_ConfigFilter(hfdcan, &sFilterConfig) == HAL_OK)
 	  {
 	    //printf("Filter configured\n");
 	  }
+	  if (HAL_FDCAN_ConfigFilter(hfdcan, &eFilterConfig) == HAL_OK)
+	  	  {
+	  	    //printf("Filter configured\n");
+	  	  }
 
 	  /* Configure global filter:
 	     Filter all remote frames with STD and EXT ID
@@ -69,7 +81,7 @@ int numPlaces (int n) {
 }
 
 int CANFD_Data_Process(char WriteArray[], int StrIndex){
-	int found, i, size = 0;
+	int found = 0, i = 0, size = 0;
 	char inst[128];
 
 	for(i = 0; i <(sizeof(*Configs)/sizeof(ReadInstruction)); i++){
@@ -87,7 +99,7 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 	if(found == 1){
 		char delim[] = " ";
 		sprintf(inst,"%s",Configs[i].Intsructions);
-		uint32_t k,c = 0;
+		uint32_t k = 0, c = 0;
 	    char *ptr = strtok(inst, delim);
 
 	    int digits = numPlaces(Configs[i].Distribution);
@@ -125,7 +137,7 @@ int CANFD_Data_Process(char WriteArray[], int StrIndex){
 }
 
 int CAN_Data_Process(char WriteArray[], int StrIndex){
-	int found, i, size = 0;
+	int found = 0, i = 0, size = 0;
 	char inst[128];
 
 	for(i = 0; i <(sizeof(*Configs)/sizeof(ReadInstruction)); i++){
@@ -143,7 +155,7 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 	if(found == 1){
 		char delim[] = " ";
 		sprintf(inst,"%s",Configs[i].Intsructions);
-		uint32_t k,c = 0;
+		uint32_t k = 0, c = 0;
 	    char *ptr = strtok(inst, delim);
 
 	    int digits = numPlaces(Configs[i].Distribution);

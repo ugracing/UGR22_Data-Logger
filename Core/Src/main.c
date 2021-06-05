@@ -19,7 +19,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stdlib.h"
 #include "fatfs.h"
 #include "usb_device.h"
 
@@ -197,20 +196,21 @@ int main(void)
         //If file doesn't exist creates a file using hard coded defaults and passes those to internal config array
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
-        sprintf(ConfigParams, "ID(HEX),Device,Bytes,Distribution,Instruction,Description\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
+        sprintf(ConfigParams, "ID(HEX),Device,Bytes,Distribution,Instruction,Description,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
       }else{
         //If file does exist reads in config parameters to internal config array
-        f_read(&Config, ConfigParams, strlen(ConfigParams), &ConfByteR);
+        f_read(&Config, ConfigParams, sizeof(ConfigParams), &ConfByteR);
       }
       f_close(&Config);
+      printf("%s\n\r", ConfigParams);
       //MAKE NEW FILE INCREMENTED BY 1
       
       //Fill ReadInstructions
-      char delim[] = ",";
-      uint32_t i,j = 0;
+      const char delim[] = ",";
+      uint32_t i = 0, j = 0;
       char *ptr = strtok(ConfigParams, delim);
       //skip over header
       for(int c = 0; c < 6; c++){
@@ -228,7 +228,7 @@ int main(void)
 				Configs[j].Distribution = atoi(ptr);
 				break;
 			case 4:
-				sprintf(Configs[j].Intsructions, "'%s'", ptr);
+				sprintf(Configs[j].Intsructions, "%s", ptr);
 				break;
 			case 6:
 				j++;
@@ -617,19 +617,19 @@ static void MX_FDCAN1_Init(void)
 
   /* USER CODE END FDCAN1_Init 1 */
   hfdcan1.Instance = FDCAN1;
-  hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_BRS;
+  hfdcan1.Init.FrameFormat = FDCAN_FRAME_CLASSIC;
   hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
   hfdcan1.Init.AutoRetransmission = DISABLE;
   hfdcan1.Init.TransmitPause = DISABLE;
   hfdcan1.Init.ProtocolException = DISABLE;
-  hfdcan1.Init.NominalPrescaler = 1;
-  hfdcan1.Init.NominalSyncJumpWidth = 23;
-  hfdcan1.Init.NominalTimeSeg1 = 56;
-  hfdcan1.Init.NominalTimeSeg2 = 23;
-  hfdcan1.Init.DataPrescaler = 1;
-  hfdcan1.Init.DataSyncJumpWidth = 5;
-  hfdcan1.Init.DataTimeSeg1 = 10;
-  hfdcan1.Init.DataTimeSeg2 = 5;
+  hfdcan1.Init.NominalPrescaler = 10;
+  hfdcan1.Init.NominalSyncJumpWidth = 1;
+  hfdcan1.Init.NominalTimeSeg1 = 3;
+  hfdcan1.Init.NominalTimeSeg2 = 3;
+  hfdcan1.Init.DataPrescaler = 10;
+  hfdcan1.Init.DataSyncJumpWidth = 1;
+  hfdcan1.Init.DataTimeSeg1 = 3;
+  hfdcan1.Init.DataTimeSeg2 = 3;
   hfdcan1.Init.MessageRAMOffset = 0;
   hfdcan1.Init.StdFiltersNbr = 2;
   hfdcan1.Init.ExtFiltersNbr = 2;
@@ -719,7 +719,8 @@ static void MX_RTC_Init(void)
 
   /* USER CODE END RTC_Init 0 */
 
-
+  RTC_TimeTypeDef sTime = {0};
+  RTC_DateTypeDef sDate = {0};
 
   /* USER CODE BEGIN RTC_Init 1 */
 
@@ -745,7 +746,24 @@ static void MX_RTC_Init(void)
 
   /** Initialize RTC and set the Time and Date
   */
+  sTime.Hours = 0;
+  sTime.Minutes = 0;
+  sTime.Seconds = 0;
+  sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+  sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+  if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+  sDate.Month = RTC_MONTH_JANUARY;
+  sDate.Date = 1;
+  sDate.Year = 0;
 
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /* USER CODE BEGIN RTC_Init 2 */
 
   /* USER CODE END RTC_Init 2 */
