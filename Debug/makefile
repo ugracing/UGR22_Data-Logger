@@ -77,8 +77,8 @@ all: main-build
 main-build: Data-Logger.elf secondary-outputs
 
 # Tool invocations
-Data-Logger.elf: $(OBJS) $(USER_OBJS) C:\Users\adamf\STM32CubeIDE\workspace_1.5.1\Data-Logger\STM32H743VITX_FLASH.ld
-	arm-none-eabi-g++ -o "Data-Logger.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\adamf\STM32CubeIDE\workspace_1.5.1\Data-Logger\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Data-Logger.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Data-Logger.elf: $(OBJS) $(USER_OBJS) /Users/lewisrussell/STM32CubeIDE/workspace_1.5.1/Data-Logger/STM32H743VITX_FLASH.ld
+	arm-none-eabi-g++ -o "Data-Logger.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"/Users/lewisrussell/STM32CubeIDE/workspace_1.5.1/Data-Logger/STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Data-Logger.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
