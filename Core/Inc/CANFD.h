@@ -16,7 +16,7 @@
 typedef struct{
 	uint32_t id;
 	uint32_t Bytes;
-	uint32_t Distribution;
+	uint64_t Distribution;
 	char Intsructions[128];
 }ReadInstruction;
 
@@ -32,6 +32,6 @@ uint8_t RxData[64];
 void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan);
 int CANFD_Data_Process(char WriteArray[], int StrIndex);
 int CAN_Data_Process(char WriteArray[], int StrIndex);
-int numPlaces (int n);
+int numPlaces (uint64_t n);
 
 #endif /* INC_CANFD_H_ */

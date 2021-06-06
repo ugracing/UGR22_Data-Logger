@@ -208,7 +208,7 @@ int main(void)
         sprintf(ConfigParams + strlen(ConfigParams),"0x503,Exhaust Temperature,8,2222,%%i %%i %%i %%i,temp degree c,\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x505,Exhaust Temperature error,8,2222,%%i %%i %%i %%i,error,\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x502,Steering Position,2,2,%%i,degrees,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2000,ECU,8,2222,%%i %%i %%i %%i,RPM-TPS(%)-Coolant temp(C)-MAT(C),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"0x2000,ECU,8,2222,%%i %%i %%i %%i,RPM-TPS(%%)-Coolant temp(C)-MAT(C),\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x2001,ECU,8,2222,%%i %%i %%i %%i,MAP(kPa)-Lambda x1000-KPH x10-Oil Pressure(kPa),\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x2002,ECU,8,2222,%%i %%i %%i %%i,Fuel Pressure(Kpa)-Oil Temperature(C)-Volts x10-Fuel Consumption(L/100Km x 10),\n");
         sprintf(ConfigParams + strlen(ConfigParams),"0x2003,ECU,8,2222,%%i %%i %%i %%i,Gear-Advance Deg x10-Injection ms x100-Fuel Consumption L/Hr x10,\n");

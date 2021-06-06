@@ -61,7 +61,7 @@ void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 
 }
 
-int numPlaces (int n) {
+int numPlaces (uint64_t n) {
 	if (n < 10) return 1;
 	if (n < 100) return 2;
 	if (n < 1000) return 3;
