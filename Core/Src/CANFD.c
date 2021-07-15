@@ -27,7 +27,7 @@ void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 
 	  FDCAN_FilterTypeDef eFilterConfig;
 	  eFilterConfig.IdType = FDCAN_EXTENDED_ID;
-	  eFilterConfig.FilterIndex = 8;
+	  eFilterConfig.FilterIndex = 0;
 	  eFilterConfig.FilterType = FDCAN_FILTER_RANGE;
 	  eFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
 	  eFilterConfig.FilterID1 = 0x0;
