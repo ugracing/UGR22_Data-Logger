@@ -8594,9 +8594,9 @@ static void MX_FDCAN1_Init(void)
  80047bc:	4b22      	ldr	r3, [pc, #136]	; (8004848 <MX_FDCAN1_Init+0xc0>)
  80047be:	2203      	movs	r2, #3
  80047c0:	61da      	str	r2, [r3, #28]
-  hfdcan1.Init.NominalTimeSeg2 = 3;
+  hfdcan1.Init.NominalTimeSeg2 = 4;
  80047c2:	4b21      	ldr	r3, [pc, #132]	; (8004848 <MX_FDCAN1_Init+0xc0>)
- 80047c4:	2203      	movs	r2, #3
+ 80047c4:	2204      	movs	r2, #4
  80047c6:	621a      	str	r2, [r3, #32]
   hfdcan1.Init.DataPrescaler = 10;
  80047c8:	4b1f      	ldr	r3, [pc, #124]	; (8004848 <MX_FDCAN1_Init+0xc0>)
@@ -8610,9 +8610,9 @@ static void MX_FDCAN1_Init(void)
  80047d4:	4b1c      	ldr	r3, [pc, #112]	; (8004848 <MX_FDCAN1_Init+0xc0>)
  80047d6:	2203      	movs	r2, #3
  80047d8:	62da      	str	r2, [r3, #44]	; 0x2c
-  hfdcan1.Init.DataTimeSeg2 = 3;
+  hfdcan1.Init.DataTimeSeg2 = 4;
  80047da:	4b1b      	ldr	r3, [pc, #108]	; (8004848 <MX_FDCAN1_Init+0xc0>)
- 80047dc:	2203      	movs	r2, #3
+ 80047dc:	2204      	movs	r2, #4
  80047de:	631a      	str	r2, [r3, #48]	; 0x30
   hfdcan1.Init.MessageRAMOffset = 0;
  80047e0:	4b19      	ldr	r3, [pc, #100]	; (8004848 <MX_FDCAN1_Init+0xc0>)
