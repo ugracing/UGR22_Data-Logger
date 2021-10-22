@@ -149,7 +149,7 @@ int CAN_Data_Process(char WriteArray[], int StrIndex){
 
 	if(found == 0){
 		for(int j = 0; j < CanFrame.length; j++){
-			StrIndex += sprintf(WriteArray + StrIndex, "%X", CanFrame.data.bytes[j]);
+			StrIndex += sprintf(WriteArray + StrIndex, "%02X", CanFrame.data.bytes[j]);
 		  }
 	}
 	if(found == 1){

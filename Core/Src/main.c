@@ -197,39 +197,42 @@ int main(void)
         f_open(&Config, ConfigPath, FA_WRITE | FA_CREATE_ALWAYS);
 
         sprintf(ConfigParams, "ID(HEX),Device,Bytes,Distribution,Instruction,Description,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x60,Wheel Speed FL,4,4,%%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x61,Wheel Speed FR,4,4,%%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x62,Wheel Speed BL,4,4,%%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x63,Wheel Speed BR,4,4,%%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x500,Brake Pressure Front,8,44,%%u %%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x501,Brake Pressure Back,8,44,%%u %%u,MPH,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x504,Coolant Pressure,8,44,%%f %%f,coolant pressure,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x503,Exhaust Temperature,8,2222,%%i %%i %%i %%i,temp degree c,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x505,Exhaust Temperature error,8,2222,%%i %%i %%i %%i,error,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x502,Steering Position,2,2,%%i,degrees,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2000,ECU,8,2222,%%i %%i %%i %%i,RPM-TPS(%%)-Coolant temp(C)-MAT(C),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2001,ECU,8,2222,%%i %%i %%i %%i,MAP(kPa)-Lambda x1000-KPH x10-Oil Pressure(kPa),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2002,ECU,8,2222,%%i %%i %%i %%i,Fuel Pressure(Kpa)-Oil Temperature(C)-Volts x10-Fuel Consumption(L/100Km x 10),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2003,ECU,8,2222,%%i %%i %%i %%i,Gear-Advance Deg x10-Injection ms x100-Fuel Consumption L/Hr x10,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2004,ECU,8,2222,%%i %%i %%i %%i,Ana1 mV-Ana2 mV-Ana3 mV-Cam Advance x10,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x2005,ECU,8,2222,%%i %%i %%i %%i,Cam Targ x10-Cam PWM x10-Crank Errors-Cam Error,\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x90,Power board,4,4,%%f,Current 1 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x91,Power board,4,4,%%f,Current 2 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x92,Power board,4,4,%%f,Current 3 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x93,Power board,4,4,%%f,Current 4 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x94,Power board,4,4,%%f,Current 5 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x95,Power board,4,4,%%f,Current 6 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x96,Power board,4,4,%%f,Current 7 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x97,Power board,4,4,%%f,Current 8 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x98,Power board,4,4,%%f,Current 9 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x99,Power board,4,4,%%f,Current 10 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9A,Power board,4,4,%%f,Current 11 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9B,Power board,4,4,%%f,Current 12 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9C,Power board,4,4,%%f,Current 13 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9D,Power board,4,4,%%f,Current 14 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9E,Power board,4,4,%%f,Current 15 (A),\n");
-        sprintf(ConfigParams + strlen(ConfigParams),"0x9F,Power board,4,4,%%f,Current 16 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"50,Datalogger,8,44,%%u %%u,FileNumber(uint32_t) CurrentMillis(uint32_t),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"60,Wheel Speed FL,4,4,%%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"61,Wheel Speed FR,4,4,%%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"62,Wheel Speed BL,4,4,%%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"63,Wheel Speed BR,4,4,%%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"500,Brake Pressure Front,8,44,%%u %%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"501,Brake Pressure Back,8,44,%%u %%u,MPH,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"504,Coolant Pressure,8,44,%%f %%f,coolant pressure,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"503,Exhaust Temperature,8,2222,%%i %%i %%i %%i,temp degree c,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"505,Exhaust Temperature error,8,2222,%%i %%i %%i %%i,error,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"502,Steering Position,2,2,%%i,degrees,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2000,ECU,8,2222,%%i %%i %%i %%i,RPM-TPS(%%)-Coolant temp(C)-MAT(C),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2001,ECU,8,2222,%%i %%i %%i %%i,MAP(kPa)-Lambda x1000-KPH x10-Oil Pressure(kPa),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2002,ECU,8,2222,%%i %%i %%i %%i,Fuel Pressure(Kpa)-Oil Temperature(C)-Volts x10-Fuel Consumption(L/100Km x 10),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2003,ECU,8,2222,%%i %%i %%i %%i,Gear-Advance Deg x10-Injection ms x100-Fuel Consumption L/Hr x10,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2004,ECU,8,2222,%%i %%i %%i %%i,Ana1 mV-Ana2 mV-Ana3 mV-Cam Advance x10,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"2005,ECU,8,2222,%%i %%i %%i %%i,Cam Targ x10-Cam PWM x10-Crank Errors-Cam Error,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"90,Power board,4,4,%%f,Current 1 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"91,Power board,4,4,%%f,Current 2 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"92,Power board,4,4,%%f,Current 3 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"93,Power board,4,4,%%f,Current 4 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"94,Power board,4,4,%%f,Current 5 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"95,Power board,4,4,%%f,Current 6 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"96,Power board,4,4,%%f,Current 7 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"97,Power board,4,4,%%f,Current 8 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"98,Power board,4,4,%%f,Current 9 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"99,Power board,4,4,%%f,Current 10 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9A,Power board,4,4,%%f,Current 11 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9B,Power board,4,4,%%f,Current 12 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9C,Power board,4,4,%%f,Current 13 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9D,Power board,4,4,%%f,Current 14 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9E,Power board,4,4,%%f,Current 15 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"9F,Power board,4,4,%%f,Current 16 (A),\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"180,Pressure sensor,8,2222,%%u %%u %%u %%u,Pressure1-Pressure2-Pressure3-Pressure4,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"181,Pressure sensor,8,2222,%%u %%u %%u %%u,Pressure5-Pressure6-Pressure7-Pressure8,\n");
+        sprintf(ConfigParams + strlen(ConfigParams),"182,Pressure sensor,8,1211111,%%i %%u %%u %%u %%u %%u %%u,temp(C)-Sensor No-Range-FirmwareRev),\n");
 
         f_write(&Config, ConfigParams, strlen(ConfigParams), &ConfByteW);
       }else{
@@ -249,28 +252,28 @@ int main(void)
     	  ptr = strtok(NULL, delim);
       }
       while(ptr != NULL /*&& j < (sizeof(*Configs)/sizeof(ReadInstruction))*/){
-		switch(i){
-			case 0:
-				Configs[j].id = (int)strtol(ptr, NULL, 0);
-				break;
-			case 2:
-				Configs[j].Bytes = atoi(ptr);
-				break;
-			case 3:
-				Configs[j].Distribution = atoi(ptr);
-				break;
-			case 4:
-				sprintf(Configs[j].Intsructions, "%s", ptr);
-				break;
-			case 6:
-				j++;
-				Configs[j].id = atoi(ptr);
-				i = 0;
-				break;
-		}
+        switch(i){
+          case 0:
+            Configs[j].id = (int)strtol(ptr, NULL, 0);
+            break;
+          case 2:
+            Configs[j].Bytes = atoi(ptr);
+            break;
+          case 3:
+            Configs[j].Distribution = atoi(ptr);
+            break;
+          case 4:
+            sprintf(Configs[j].Intsructions, "%s", ptr);
+            break;
+          case 6:
+            j++;
+            Configs[j].id = atoi(ptr);
+            i = 0;
+            break;
+        }
 
-		ptr = strtok(NULL, delim);
-		i++;
+        ptr = strtok(NULL, delim);
+        i++;
       }
 
 
