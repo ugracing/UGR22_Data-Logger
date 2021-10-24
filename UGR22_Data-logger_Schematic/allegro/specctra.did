@@ -1,0 +1,23 @@
+# Cadence Design Systems, Inc.
+# Allegro PCB Router Automatic Router
+# Allegro PCB Router v17-2-50 made 2017/01/16 at 14:16:53
+# Running on host 
+# 
+#            Command Line Parameters
+#            -----------------------
+# Design File Name : C:/USERS/LEWIS/DOCUMENTS/UNI/DATA LOGGER FULL/allegro\datalogger.dsn
+# Initialization options:
+#   -do pasde.do
+# Status File Name : C:/USERS/LEWIS/DOCUMENTS/UNI/DATA LOGGER FULL/allegro\monitor.sts
+# -sim specified. Polygons simplified.
+# Use Colormap In Design File.
+#
+#
+#
+#
+# do $/datalogger_rules.do
+# do C:/USERS/LEWIS/DOCUMENTS/UNI/DATA LOGGER FULL/allegro/datalogger_custom_route.do
+defkey (q ) (write session C:/USERS/LEWIS/DOCUMENTS/UNI/DATA LOGGER FULL/allegro/datalogger.ses;quit)
+quit)
+write colormap _notify.std
+quit -c

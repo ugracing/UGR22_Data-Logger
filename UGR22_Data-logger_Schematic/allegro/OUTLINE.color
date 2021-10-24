@@ -1,0 +1,8 @@
+#  View replacement method:
+#  Complete
+
+color -globvis off
+color -vis "BOARD GEOMETRY/DESIGN_OUTLINE"
+color -vis "ETCH/BOND_BOTTOM"
+color -vis "ETCH/BOND_TOP"
+color -vis "BOUNDARY/MULTI_USER_LOCK"

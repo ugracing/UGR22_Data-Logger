@@ -1,0 +1,11 @@
+#  View replacement method:
+#  Complete
+
+color -globvis off
+color -vis "DRC ERROR CLASS/GNDS"
+color -vis "ETCH/GNDS"
+color -vis "PIN/GNDS"
+color -vis "VIA CLASS/GNDS"
+color -vis "ANTI ETCH/GNDS"
+color -vis "BOUNDARY/GNDS"
+color -vis "CAVITY/GNDS"

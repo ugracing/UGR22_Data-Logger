@@ -1,0 +1,11 @@
+#  View replacement method:
+#  Complete
+
+color -globvis off
+color -vis "DRC ERROR CLASS/LAYER2"
+color -vis "ETCH/LAYER2"
+color -vis "PIN/LAYER2"
+color -vis "VIA CLASS/LAYER2"
+color -vis "ANTI ETCH/LAYER2"
+color -vis "BOUNDARY/LAYER2"
+color -vis "CAVITY/LAYER2"

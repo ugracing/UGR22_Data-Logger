@@ -1,0 +1,1400 @@
+FILE_TYPE = EXPANDEDPARTLIST;
+{ Using PSTWRITER 17.2.0 d001Mar-22-2021 at 21:05:07 }
+DIRECTIVES
+ PST_VERSION='PST_HDL_CENTRIC_VERSION_0';
+ ROOT_DRAWING='DATALOGGER';
+ POST_TIME='Jan  9 2017 17:57:56';
+ SOURCE_TOOL='CAPTURE_WRITER';
+END_DIRECTIVES;
+
+PART_NAME
+ BT1 'BATTERY_SEIKO_MS518SE-FL35E_MS5':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS860171@DISCRETE.BATTERY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins860171@discrete.\battery.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins860171@discrete.\battery.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ BT2 'BATTERY_SEIKO_MS518SE-FL35E_MS5':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS875754@DISCRETE.BATTERY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins875754@discrete.\battery.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins875754@discrete.\battery.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C1 'C_GU-C1206_10U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25643@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25643@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25643@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C10 'C_GU-C1206_10U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26239@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26239@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26239@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C100 'C_GU-C0402_1UF':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872720@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872720@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872720@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C101 'C_GU-C0402_100NF':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872736@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872736@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872736@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C102 'C_GU-C0402_1N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872906@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872906@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872906@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C103 'C_GU-C0402_1N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872922@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872922@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872922@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C104 'C_GU-C0402_12.5P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS873828@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins873828@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins873828@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C105 'C_GU-C0603_2.2U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS873854@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins873854@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins873854@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C106 'C_GU-C0402_12.5P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS873972@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins873972@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins873972@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C107 'C_GU-C0402_18P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874072@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874072@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874072@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C108 'C_GU-C0402_18P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874226@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874226@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874226@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C11 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25675@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25675@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25675@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C110 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874384@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874384@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874384@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C111 'C_GU-C0603_2.2U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874550@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874550@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874550@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C112 'C_GU-C0402_47P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS894422@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins894422@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins894422@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C113 'C_GU-C0402_1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS894991@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins894991@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins894991@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C114 'C_GU-C0603_4.7U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1109839@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1109839@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1109839@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C12 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26255@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26255@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26255@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C13 'C_GU-R0402_33N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832360@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832360@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832360@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C14 'C_GU-R0402_1N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832404@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832404@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832404@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C15 'C_GU-R0603_1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832454@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832454@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832454@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C16 'C_GU-R0402_10N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832498@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832498@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832498@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C17 'C_GU-R0402_220P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832588@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832588@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832588@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C18 'C_GU-R0402_1.5P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832898@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832898@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832898@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C19 'C_GU-R0402_0.3P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833030@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833030@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833030@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C2 'C_GU-C1206_10U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25659@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25659@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25659@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C24 'C_GU-R0402_1P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833120@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833120@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833120@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C25 'C_GU-R0402_8P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833370@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833370@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833370@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C26 'C_GU-R0402_2.2N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833414@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833414@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833414@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C27 'C_GU-R0402_4.7P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833430@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833430@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833430@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C28 'C_GU-R0402_8P':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833524@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833524@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833524@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C3 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25409@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25409@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25409@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C4 'C_GU-R0603_22U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25425@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25425@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25425@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C5 'C_GU-R0603_22U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25441@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25441@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25441@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C53 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840087@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840087@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840087@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C54 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840111@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840111@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840111@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C55 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840167@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840167@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840167@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C56 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840593@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840593@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840593@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C57 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840617@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840617@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840617@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C6 'C_GU-R0603_22U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26033@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26033@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26033@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C7 'C_GU-R0603_22U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26049@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26049@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26049@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C8 'C_GU-R0402_0.1U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26017@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26017@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26017@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C86 'C_GU-C0603_4.7U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872496@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872496@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872496@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C87 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872512@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872512@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872512@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C88 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872528@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872528@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872528@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C89 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872544@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872544@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872544@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C9 'C_GU-C1206_10U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26223@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26223@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26223@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C90 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872560@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872560@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872560@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C91 'C_GU-C0402_100N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872576@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872576@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872576@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ C97 'C_GU-C0402_1UF':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872672@ANALOG.C.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872672@analog.\c.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872672@analog.\c.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D1 'LED_GU-C0603_GREEN':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874630@DISCRETE.LED.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874630@discrete.\led.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874630@discrete.\led.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D10 'DIODE SCHOTTKY_GU-C0603_NSR20F3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS879108@DISCRETE.DIODE SCHOTTKY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins879108@discrete.\diode schottky.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins879108@discrete.\diode schottky.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D12 'DIODE SCHOTTKY_GU-C0603_NSR20F3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS879580@DISCRETE.DIODE SCHOTTKY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins879580@discrete.\diode schottky.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins879580@discrete.\diode schottky.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D14 'DIODE SCHOTTKY_GU-C0603_NSR20F3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS882953@DISCRETE.DIODE SCHOTTKY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins882953@discrete.\diode schottky.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins882953@discrete.\diode schottky.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D2 'LED_GU-R0603_RED_LED':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25457@DISCRETE.LED.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25457@discrete.\led.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25457@discrete.\led.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D3 'LED_GU-R0603_YELLOW_LED':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26065@DISCRETE.LED.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26065@discrete.\led.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26065@discrete.\led.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D5 'DIODE SCHOTTKY13_0_GU-C0603_NSR':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS859951@DATALOGGER.DIODE SCHOTTKY13_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins859951@datalogger.\diode schottky13_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins859951@datalogger.\diode schottky13_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D7 'LED_GU-R0603_LED_BLUE':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS860111@DISCRETE.LED.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins860111@discrete.\led.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins860111@discrete.\led.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D8 'DIODE SCHOTTKY_GU-C0603_NSR20F3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS877697@DISCRETE.DIODE SCHOTTKY.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins877697@discrete.\diode schottky.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins877697@discrete.\diode schottky.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ D9 'DIODE ZENER_DIODES-DFLZ15-7_MM3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS877722@DISCRETE.DIODE ZENER.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins877722@discrete.\diode zener.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins877722@discrete.\diode zener.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ F1 'FUSE_FUSC455X324X85L30_1206L075':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS877672@DISCRETE.FUSE.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins877672@discrete.\fuse.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins877672@discrete.\fuse.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ GPS1 'NE0-M9N_2_UBLOX_NEO-M9N-00BGNSS':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS859611@DATALOGGER.NE0-M9N_2.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins859611@datalogger.\ne0-m9n_2.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins859611@datalogger.\ne0-m9n_2.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J10 'CON4_RHDRV4W90P254_4X1_CANFD1':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840335@CONNECTOR.CON4.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840335@connector.\con4.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840335@connector.\con4.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J19 'CON6_GU-HEADER6_SWD':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874124@CONNECTOR.CON6.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874124@connector.\con6.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874124@connector.\con6.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J2 'CON8_GU-HEADER8_BACKUP_TELE_HEA':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832276@CONNECTOR.CON8.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832276@connector.\con8.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832276@connector.\con8.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J20 'CON4_RHDRV4W90P254_4X1_CANFD2':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS877542@CONNECTOR.CON4.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins877542@connector.\con4.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins877542@connector.\con4.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J22 'CON5_GU_SMA_JACK_STR_SMA':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS927296@CONNECTOR.CON5.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins927296@connector.\con5.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins927296@connector.\con5.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J24 'CON4_RHDRV4W90P254_4X1_RS-485':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1025781@CONNECTOR.CON4.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1025781@connector.\con4.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1025781@connector.\con4.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J25 'CON4_RHDRV4W90P254_4X1_USB HEAD':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1028907@CONNECTOR.CON4.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1028907@connector.\con4.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1028907@connector.\con4.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J26 'CON14_13_HRS_DM3D-SF_MICRO SD':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1065525@DATALOGGER.CON14_13.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1065525@datalogger.\con14_13.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1065525@datalogger.\con14_13.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J4 'CON5_TE-1981584-1_1981584-1':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS882989@CONNECTOR.CON5.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins882989@connector.\con5.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins882989@connector.\con5.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ J5 'CON5_GU_SMA_JACK_STR_SMA':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832566@CONNECTOR.CON5.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832566@connector.\con5.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832566@connector.\con5.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L1 'L_INDDFN2_400X400X310L157X370_4':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25315@ANALOG.L.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25315@analog.\l.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25315@analog.\l.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L2 'L_INDDFN2_400X400X310L157X370_4':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25911@ANALOG.L.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25911@analog.\l.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25911@analog.\l.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L3 'L_GU-R0402_3.9N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832860@ANALOG.L.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832860@analog.\l.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832860@analog.\l.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L6 'L_GU-R0402_8.2N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833014@ANALOG.L.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833014@analog.\l.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833014@analog.\l.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L7 'L_GU-R0402_2.7N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833160@ANALOG.L.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833160@analog.\l.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833160@analog.\l.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ L8 'CHOKE FERRITE_GU-R0603_30OHMS/1':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS859573@DISCRETE.CHOKE FERRITE.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins859573@discrete.\choke ferrite.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins859573@discrete.\choke ferrite.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R1 'R_GU-R0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25691@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25691@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25691@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R10 'R_GU-R0402_1K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833290@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833290@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833290@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R11 'R_GU-R0402_1K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833338@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833338@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833338@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R12 'R_GU-R0402_20K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833354@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833354@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833354@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R13 'R_GU-R0402_1M':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS833464@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins833464@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins833464@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R15 'R_GU-C0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874666@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874666@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874666@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R16 'R_GU-C0402_1M':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874152@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874152@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874152@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R17 'R_GU-C0402_1M':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS873908@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins873908@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins873908@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R2 'R_GU-R0402_54.9K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25489@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25489@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25489@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R26 'R_GU-R0402_120':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840521@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840521@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840521@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R28 'R_GU-R0402_120':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840795@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840795@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840795@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R3 'R_GU-R0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25719@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25719@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25719@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R4 'R_GU-R0402_33.2K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26101@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26101@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26101@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R46 'R_GU-C0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872890@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872890@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872890@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R5 'R_GU-R0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26271@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26271@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26271@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R53 'R_GU-C0402_150':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874646@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874646@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874646@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R54 'R_GU-R0402_85':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS885286@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins885286@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins885286@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R55 'R_GU-R0402_65':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS886460@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins886460@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins886460@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R56 'R_GU-R0402_55':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS889006@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins889006@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins889006@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R58 'R_GU-R0402_2.2K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS890225@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins890225@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins890225@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R59 'R_GU-R0402_2.2K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS890251@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins890251@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins890251@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R6 'R_GU-R0402_10K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS26303@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins26303@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins26303@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R60 'R_GU-R0402_1.5K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS891489@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins891489@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins891489@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R61 'R_GU-R0402_10':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS892399@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins892399@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins892399@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R63 'R_GU-R0402_33':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS892574@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins892574@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins892574@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R64 'R_GU-R0402_33':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS892610@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins892610@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins892610@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R65 'R_GU-R0402_33':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS892660@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins892660@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins892660@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R66 'R_GU-R0402_33':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS892676@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins892676@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins892676@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R68 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS948181@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins948181@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins948181@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R69 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS948227@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins948227@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins948227@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R70 'R_GU-C0402_47K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1008775@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1008775@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1008775@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R71 'R_GU-C0402_47K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1008795@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1008795@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1008795@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R72 'R_GU-C0402_47K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1008821@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1008821@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1008821@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R73 'R_GU-C0402_47K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1008875@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1008875@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1008875@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R74 'R_GU-C0402_47K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1008895@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1008895@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1008895@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R75 'R_GU-R0402_120':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1025482@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1025482@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1025482@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R76 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1083431@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1083431@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1083431@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R77 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1083488@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1083488@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1083488@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R78 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1083516@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1083516@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1083516@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R79 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1099741@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1099741@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1099741@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R81 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1101458@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1101458@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1101458@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R82 'R_GU-R0603_0':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1101484@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1101484@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1101484@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ R9 'R_GU-R0402_22K':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832320@ANALOG.R.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832320@analog.\r.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832320@analog.\r.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ SW2 'SW KEY-SPDT_0_SOT175P420X230-3N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS872868@DATALOGGER.SW KEY-SPDT_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins872868@datalogger.\sw key-spdt_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins872868@datalogger.\sw key-spdt_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ SW3 'SW KEY-SPST_OMRON_B3U-1000P_B3U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874602@DISCRETE.SW KEY-SPST.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874602@discrete.\sw key-spst.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874602@discrete.\sw key-spst.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ SW4 'SW KEY-SPST_OMRON_B3U-1000P_B3U':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874320@DISCRETE.SW KEY-SPST.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874320@discrete.\sw key-spst.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874320@discrete.\sw key-spst.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U1 'TPS56220_0_SOT23-6P95_280X145L4':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25381@BUCK CONVERTER.TPS56220_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25381@\buck converter\.\tps56220_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25381@\buck converter\.\tps56220_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U10 'MCP2562FD_0_SON65P300X300X80-9N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840661@DATALOGGER.MCP2562FD_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840661@datalogger.\mcp2562fd_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840661@datalogger.\mcp2562fd_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U12 '2450LP14A100T_RESCAXE6P50_160X8':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS938530@FILTER.2450LP14A100T.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins938530@filter.\2450lp14a100t.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins938530@filter.\2450lp14a100t.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U13 'STM32H743VIT6_QFP50P1600X1600X1':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS989370@FILTER.STM32H743VIT6.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins989370@filter.\stm32h743vit6.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins989370@filter.\stm32h743vit6.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U14 'MAX3062EEKA+T_SOT65P280X145-8N_':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1024581@FILTER.MAX3062EEKA+T.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1024581@filter.\max3062eeka+t.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1024581@filter.\max3062eeka+t.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U2 'TPS56220_0_SOT23-6P95_280X145L4':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS25989@BUCK CONVERTER.TPS56220_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins25989@\buck converter\.\tps56220_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins25989@\buck converter\.\tps56220_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U3 'DDPROTEC_0_SON8P50_250X120X55L4':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS883011@DATALOGGER.DDPROTEC_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins883011@datalogger.\ddprotec_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins883011@datalogger.\ddprotec_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U4 'NRF24L01P-R_1_QFN21P50_400X400X':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832684@DATALOGGER.NRF24L01P-R_1.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832684@datalogger.\nrf24l01p-r_1.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832684@datalogger.\nrf24l01p-r_1.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U5 'RFX2401C_0_QFN17P50_300X300X55L':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS832736@DATALOGGER.RFX2401C_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins832736@datalogger.\rfx2401c_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins832736@datalogger.\rfx2401c_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ U8 'MCP2562FD_0_SON65P300X300X80-9N':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS840209@DATALOGGER.MCP2562FD_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins840209@datalogger.\mcp2562fd_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins840209@datalogger.\mcp2562fd_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ Y2 '12MHZ KX-7 20PF_0_SG-310_16MHZ':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS1072313@DESIGN1.12MHZ KX-7 20PF_0.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins1072313@design1.\12mhz kx-7 20pf_0.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins1072313@design1.\12mhz kx-7 20pf_0.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ Y3 '32.768KHZ_XTALDFN2_600X350X140_':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS874168@LIBRARY1.32.768KHZ.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins874168@library1.\32.768khz.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins874168@library1.\32.768khz.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+PART_NAME
+ Y4 '32.768KHZ_X2-SMD-L20X12X055MM_3':;
+
+SECTION_NUMBER 1
+ '@DATALOGGER.SCHEMATIC1(SCH_1):INS873924@LIBRARY1.32.768KHZ.NORMAL(CHIPS)':
+ C_PATH='@datalogger.schematic1(sch_1):ins873924@library1.\32.768khz.normal\(chips)',
+ P_PATH='@datalogger.schematic1(sch_1):page1_ins873924@library1.\32.768khz.normal\(chips)',
+ PRIM_FILE='.\pstchip.dat',
+ SECTION='';
+
+END.

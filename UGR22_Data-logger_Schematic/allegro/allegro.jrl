@@ -1,0 +1,81 @@
+\t (00:00:00) allegro 17.2 S013 Windows SPB 64-bit Edition
+\t (00:00:00)     Journal start - Thu May 20 23:33:05 2021
+\t (00:00:00)         Host=DESKTOP-H1BOBSS User=Lewis Pid=8248 CPUs=12
+\t (00:00:00) CmdLine= c:\cadence\spb_17.2\tools\bin\allegro.exe C:\Users\Lewis\Documents\Uni\Data Logger Full\allegro\datalogger.brd
+\t (00:00:00) 
+   (00:00:00) Loading axlcore.cxt 
+\t (00:00:01) Opening existing design...
+\d (00:00:01) Design opened: C:/Users/Lewis/Documents/Uni/Data Logger Full/allegro/datalogger.brd
+\i (00:00:01) trapsize 1619
+\i (00:00:01) trapsize 1656
+\i (00:00:01) trapsize 1656
+\i (00:00:02) placementedit 
+\i (00:00:15) trapsize 2409
+\i (00:00:15) trapsize 2840
+\i (00:00:19) trapsize 4459
+\i (00:00:20) trapsize 2840
+\i (00:00:21) zoom in 1 
+\i (00:00:21) setwindow pcb
+\i (00:00:21) zoom in -572.12 -435.39
+\i (00:00:21) trapsize 1420
+\i (00:00:21) roam start
+\i (00:00:21) roam x -32
+\i (00:00:21) roam y 48
+\i (00:00:21) roam x -32
+\i (00:00:21) roam y 48
+\i (00:00:21) roam x -16
+\i (00:00:21) roam y 32
+\i (00:00:22) roam end
+\i (00:00:22) zoom out 1 
+\i (00:00:22) setwindow pcb
+\i (00:00:22) zoom out -400.01 -220.54
+\i (00:00:22) trapsize 2840
+\i (00:00:25) QtSignal CVPLayerGrid CVPAllConductors clicked true
+\i (00:00:27) QtSignal CVPLayerGrid CVPBoxAllLayer2 clicked false
+\i (00:00:28) QtSignal CVPLayerGrid CVPBoxAllGnds clicked false
+\i (00:00:30) zoom in 1 
+\i (00:00:30) setwindow pcb
+\i (00:00:30) zoom in -865.70 -373.89
+\i (00:00:30) trapsize 1420
+\i (00:00:32) roam start
+\i (00:00:32) roam x 32
+\i (00:00:32) roam y -32
+\i (00:00:33) roam x 16
+\i (00:00:33) roam x 16
+\i (00:00:33) roam y -16
+\i (00:00:33) roam x 16
+\i (00:00:34) roam end
+\i (00:00:35) zoom out 1 
+\i (00:00:35) setwindow pcb
+\i (00:00:35) zoom out -152.96 77.62
+\i (00:00:35) trapsize 2840
+\i (00:00:54) zoom selection 
+\i (00:00:54) placementedit 
+\i (00:00:55) zoom fit 
+\i (00:00:55) trapsize 1460
+\i (00:01:00) zoom in 1 
+\i (00:01:00) setwindow pcb
+\i (00:01:00) zoom in -1148.80 352.81
+\i (00:01:00) trapsize 730
+\i (00:01:03) zoom out 1 
+\i (00:01:03) setwindow pcb
+\i (00:01:03) zoom out -1036.39 361.57
+\i (00:01:03) trapsize 1460
+\i (00:01:05) zoom fit 
+\i (00:01:05) trapsize 1460
+\i (00:01:36) color192 
+\i (00:01:36) placementedit 
+\i (00:01:40) QtSignal CVDLayerSplitter CVDLayersTree itemSelectionChanged Components
+\i (00:01:45) QtSignal CVDLayerTable VertHeader clickedCheckBox 6
+\i (00:01:45) QtSignal CVDLayerSplitter CVDLayerTable dataChanged Silkscreen_Bottom CmpVal
+\i (00:01:47) QtSignal CVDLayerTable VertHeader clickedCheckBox 7
+\i (00:01:47) QtSignal CVDLayerSplitter CVDLayerTable dataChanged Silkscreen_Top CmpVal
+\i (00:01:52) QtSignal CVDLayerTable VertHeader clickedCheckBox 0
+\i (00:01:52) QtSignal CVDLayerSplitter CVDLayerTable dataChanged Assembly_Bottom CmpVal
+\i (00:01:53) QtSignal CVDLayerTable VertHeader clickedCheckBox 2
+\i (00:01:53) QtSignal CVDLayerSplitter CVDLayerTable dataChanged Assembly_Top CmpVal
+\i (00:01:59) QtSignal ColorVisibilityDialog CVDOkButton clicked
+\i (00:31:10) exit 
+\e (00:31:10) Do you want to save the changes you made to datalogger.brd?
+\i (00:31:12) fillin yes 
+\t (00:31:12)     Journal end - Fri May 21 00:04:16 2021

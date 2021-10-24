@@ -1,0 +1,27 @@
+(---------------------------------------------------------------------)
+(                                                                     )
+(    Unplaced Symbol Availability Check                               )
+(                                                                     )
+(    Drawing          : datalogger.brd                                )
+(    Software Version : 17.2S013                                      )
+(    Date/Time        : Tue Mar 23 02:36:00 2021                      )
+(                                                                     )
+(---------------------------------------------------------------------)
+
+
+Current PSMPATH consists of:
+	C:/Users/Lewis/Documents/Uni/Allegro_Footprints/
+	.
+	symbols
+	..
+	../symbols
+	c:/cadence/spb_17.2/share/local/pcb/symbols
+	c:/cadence/spb_17.2/share/pcb/pcb_lib/symbols
+	c:/cadence/spb_17.2/share/pcb/allegrolib/symbols
+
+
+All Symbols Found
+
+Total symbols placed:      139 out of 139
+
+

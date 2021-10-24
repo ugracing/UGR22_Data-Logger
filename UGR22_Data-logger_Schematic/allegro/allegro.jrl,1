@@ -1,0 +1,265 @@
+\t (00:00:05) allegro 17.2 S013 Windows SPB 64-bit Edition
+\t (00:00:05)     Journal start - Sat Apr 10 22:44:47 2021
+\t (00:00:05)         Host=DESKTOP-H1BOBSS User=Lewis Pid=6392 CPUs=12
+\t (00:00:05) CmdLine= c:\cadence\spb_17.2\tools\bin\allegro.exe C:\Users\Lewis\Documents\Uni\Data Logger Full\allegro\datalogger.brd
+\t (00:00:05) 
+   (00:00:05) Loading axlcore.cxt 
+\t (00:00:05) Opening existing design...
+\d (00:00:05) Design opened: C:/Users/Lewis/Documents/Uni/Data Logger Full/allegro/datalogger.brd
+\i (00:00:05) trapsize 1619
+\i (00:00:06) trapsize 1656
+\i (00:00:06) trapsize 1656
+\i (00:00:06) etchedit 
+\i (00:00:14) flipdesign 
+\i (00:00:15) zoom in 1 
+\i (00:00:15) setwindow pcb
+\i (00:00:15) zoom in 1188.98 -4.00
+\i (00:00:15) trapsize 828
+\i (00:00:15) zoom in 1 
+\i (00:00:15) setwindow pcb
+\i (00:00:15) zoom in 1180.70 -8.96
+\i (00:00:15) trapsize 414
+\i (00:00:16) roam start
+\i (00:00:16) roam y 48
+\i (00:00:16) roam y 96
+\i (00:00:16) roam x 32
+\i (00:00:16) roam y 128
+\i (00:00:16) roam x 16
+\i (00:00:16) roam y 176
+\i (00:00:16) roam y 80
+\i (00:00:16) roam y 64
+\i (00:00:16) roam y 48
+\i (00:00:16) roam end
+\i (00:00:16) zoom out 1 
+\i (00:00:16) setwindow pcb
+\i (00:00:16) zoom out 972.91 -468.41
+\i (00:00:16) trapsize 828
+\i (00:00:17) roam start
+\i (00:00:17) roam x 48
+\i (00:00:17) roam y -16
+\i (00:00:17) roam x 64
+\i (00:00:17) roam y -64
+\i (00:00:17) roam x 16
+\i (00:00:17) roam x 16
+\i (00:00:17) roam y -48
+\i (00:00:17) roam x 16
+\i (00:00:17) roam y -48
+\i (00:00:17) roam end
+\i (00:00:18) zoom in 1 
+\i (00:00:18) setwindow pcb
+\i (00:00:18) zoom in 453.85 -80.98
+\i (00:00:18) trapsize 414
+\i (00:00:23) roam start
+\i (00:00:23) roam y 48
+\i (00:00:23) roam y 64
+\i (00:00:23) roam y 16
+\i (00:00:23) roam y 32
+\i (00:00:23) roam y 32
+\i (00:00:23) roam y 16
+\i (00:00:23) roam y 16
+\i (00:00:24) roam x 16
+\i (00:00:24) roam y 48
+\i (00:00:24) roam y 48
+\i (00:00:24) roam y 32
+\i (00:00:24) roam y 80
+\i (00:00:24) roam y 48
+\i (00:00:24) roam end
+\i (00:00:27) QtSignal CVPLayerGrid CVPBoxAllLayer2 clicked false
+\i (00:00:28) QtSignal CVPLayerGrid CVPBoxAllGnds clicked false
+\i (00:00:28) QtSignal CVPLayerGrid CVPBoxAllTop clicked false
+\i (00:00:29) roam start
+\i (00:00:29) roam x -32
+\i (00:00:29) roam y -16
+\i (00:00:30) roam x -48
+\i (00:00:30) roam y -64
+\i (00:00:30) roam y -16
+\i (00:00:30) roam end
+\i (00:00:30) roam start
+\i (00:00:30) roam x -16
+\i (00:00:30) roam y -48
+\i (00:00:30) roam x -16
+\i (00:00:30) roam y -64
+\i (00:00:30) roam x -16
+\i (00:00:30) roam y -64
+\i (00:00:30) roam x -16
+\i (00:00:30) roam y -112
+\i (00:00:30) roam y -80
+\i (00:00:30) roam y -32
+\i (00:00:30) roam end
+\i (00:00:32) roam start
+\i (00:00:32) roam y 48
+\i (00:00:32) roam y 48
+\i (00:00:32) roam x 16
+\i (00:00:32) roam y 64
+\i (00:00:32) roam y 64
+\i (00:00:32) roam x 16
+\i (00:00:32) roam y 48
+\i (00:00:32) roam y 80
+\i (00:00:32) roam x 16
+\i (00:00:32) roam y 32
+\i (00:00:32) roam y 16
+\i (00:00:32) roam end
+\i (00:00:34) roam start
+\i (00:00:34) roam y -48
+\i (00:00:34) roam y -16
+\i (00:00:35) roam y -16
+\i (00:00:35) roam y -48
+\i (00:00:35) roam y -16
+\i (00:00:35) roam y -16
+\i (00:00:35) roam y -32
+\i (00:00:35) roam y -32
+\i (00:00:35) roam y -16
+\i (00:00:35) roam y -16
+\i (00:00:35) roam end
+\i (00:00:37) roam start
+\i (00:00:37) roam y -48
+\i (00:00:37) roam y -48
+\i (00:00:37) roam x 16
+\i (00:00:37) roam y -16
+\i (00:00:38) roam y -48
+\i (00:00:38) roam y -32
+\i (00:00:38) roam end
+\i (00:00:42) zoom out 1 
+\i (00:00:42) setwindow pcb
+\i (00:00:42) zoom out 441.44 -106.64
+\i (00:00:42) trapsize 828
+\i (00:00:42) roam start
+\i (00:00:42) roam y 80
+\i (00:00:43) roam x -16
+\i (00:00:43) roam y 112
+\i (00:00:43) roam y 64
+\i (00:00:43) roam x -16
+\i (00:00:43) roam y 32
+\i (00:00:43) roam end
+\i (00:00:44) zoom in 1 
+\i (00:00:44) setwindow pcb
+\i (00:00:44) zoom in 433.98 -622.39
+\i (00:00:44) trapsize 414
+\i (00:03:18) zoom out 1 
+\i (00:03:18) setwindow pcb
+\i (00:03:18) zoom out 476.20 -785.47
+\i (00:03:18) trapsize 828
+\i (00:03:18) zoom out 1 
+\i (00:03:18) setwindow pcb
+\i (00:03:18) zoom out 476.21 -785.48
+\i (00:03:18) trapsize 1656
+\i (00:03:18) zoom out 1 
+\i (00:03:18) setwindow pcb
+\i (00:03:18) zoom out 476.21 -782.17
+\i (00:03:18) trapsize 3311
+\i (00:03:20) zoom in 1 
+\i (00:03:20) setwindow pcb
+\i (00:03:20) zoom in 515.95 -398.04
+\i (00:03:20) trapsize 1656
+\i (00:03:21) zoom in 1 
+\i (00:03:21) setwindow pcb
+\i (00:03:21) zoom in 545.75 -345.05
+\i (00:03:21) trapsize 828
+\i (00:03:24) roam start
+\i (00:03:24) roam x 64
+\i (00:03:24) roam x 96
+\i (00:03:25) roam x 16
+\i (00:03:25) roam x 144
+\i (00:03:25) roam y 48
+\i (00:03:25) roam x 96
+\i (00:03:25) roam y 16
+\i (00:03:25) roam end
+\i (00:03:25) zoom out 1 
+\i (00:03:25) setwindow pcb
+\i (00:03:25) zoom out -797.85 -342.58
+\i (00:03:25) trapsize 1656
+\i (00:03:26) pick grid -1658.81 207.11
+\t (00:03:26) last pick:  -1659.00 207.00
+\i (00:03:27) prepopup -1589.27 87.90
+\i (00:03:28) pick grid -1589.27 -663.78
+\t (00:03:28) last pick:  -1589.00 -664.00
+\i (00:03:29) zoom in 1 
+\i (00:03:29) setwindow pcb
+\i (00:03:29) zoom in -476.65 -243.23
+\i (00:03:29) trapsize 828
+\i (00:03:29) zoom in 1 
+\i (00:03:29) setwindow pcb
+\i (00:03:29) zoom in -476.65 -243.23
+\i (00:03:29) trapsize 414
+\i (00:03:30) prepopup -466.71 -170.37
+\i (00:03:32) pop dyn_option_select @:@Dehighlight 
+\i (00:03:32) dehilight 
+\t (00:03:32) Symbol "U14" dehighlighted.
+\i (00:03:32) etchedit 
+\i (00:03:32) zoom out 1 
+\i (00:03:32) setwindow pcb
+\i (00:03:32) zoom out -447.67 -263.09
+\i (00:03:32) trapsize 828
+\i (00:03:32) zoom out 1 
+\i (00:03:32) setwindow pcb
+\i (00:03:32) zoom out -447.67 -263.09
+\i (00:03:32) trapsize 1656
+\i (00:03:32) zoom out 1 
+\i (00:03:32) setwindow pcb
+\i (00:03:32) zoom out -447.67 -263.10
+\i (00:03:32) trapsize 3311
+\i (00:03:33) pick grid -2215.51 -316.07
+\t (00:03:33) last pick:  -2216.00 -316.00
+\i (00:03:33) zoom in 1 
+\i (00:03:33) setwindow pcb
+\i (00:03:33) zoom in -241.93 -249.84
+\i (00:03:33) trapsize 1656
+\i (00:03:38) zoom in 1 
+\i (00:03:38) setwindow pcb
+\i (00:03:38) zoom in 1334.28 -431.97
+\i (00:03:38) trapsize 828
+\i (00:03:38) zoom in 1 
+\i (00:03:38) setwindow pcb
+\i (00:03:38) zoom in 1334.29 -431.96
+\i (00:03:38) trapsize 414
+\i (00:03:39) roam start
+\i (00:03:39) roam x 48
+\i (00:03:39) roam y 64
+\i (00:03:39) roam x 32
+\i (00:03:39) roam y 48
+\i (00:03:39) roam x 32
+\i (00:03:39) roam y 48
+\i (00:03:39) roam x 16
+\i (00:03:39) roam y 64
+\i (00:03:39) roam end
+\i (00:03:41) zoom out 1 
+\i (00:03:41) setwindow pcb
+\i (00:03:41) zoom out 674.06 -691.92
+\i (00:03:41) trapsize 828
+\i (00:03:43) zoom in 1 
+\i (00:03:43) setwindow pcb
+\i (00:03:43) zoom in 938.96 -670.40
+\i (00:03:43) trapsize 414
+\i (00:03:43) zoom in 1 
+\i (00:03:43) setwindow pcb
+\i (00:03:43) zoom in 938.96 -670.40
+\i (00:03:43) trapsize 207
+\i (00:03:52) zoom out 1 
+\i (00:03:52) setwindow pcb
+\i (00:03:52) zoom out 827.62 -652.60
+\i (00:03:52) trapsize 414
+\i (00:03:52) zoom out 1 
+\i (00:03:52) setwindow pcb
+\i (00:03:52) zoom out 827.61 -652.60
+\i (00:03:52) trapsize 828
+\i (00:03:52) zoom out 1 
+\i (00:03:52) setwindow pcb
+\i (00:03:52) zoom out 827.61 -652.61
+\i (00:03:52) trapsize 1656
+\i (00:03:53) roam start
+\i (00:03:53) roam x 48
+\i (00:03:53) roam x 128
+\i (00:03:53) roam x 96
+\i (00:03:53) roam y 16
+\i (00:03:53) roam x 48
+\i (00:03:53) roam end
+\i (00:03:54) roam start
+\i (00:03:54) roam x 48
+\i (00:03:54) roam y -16
+\i (00:03:54) roam x 48
+\i (00:03:54) roam y -48
+\i (00:03:54) roam end
+\i (00:03:59) exit 
+\e (00:03:59) Do you want to save the changes you made to datalogger.brd?
+\i (00:04:00) fillin yes 
+\t (00:04:00)     Journal end - Sat Apr 10 22:48:42 2021

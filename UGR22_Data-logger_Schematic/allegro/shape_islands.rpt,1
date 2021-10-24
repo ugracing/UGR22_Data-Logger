@@ -1,0 +1,19 @@
+(---------------------------------------------------------------------)
+(                                                                     )
+(    Shape Island Report                                              )
+(                                                                     )
+(    Drawing          : datalogger.brd                                )
+(    Software Version : 17.2S013                                      )
+(    Date/Time        : Tue Mar 23 00:36:11 2021                      )
+(                                                                     )
+(---------------------------------------------------------------------)
+
+
+  Total islands on design: 2
+
+
+  <<<  ETCH  >>>
+
+    Layer = TOP
+	Point on shape: (340.72 635.16)  Net: GND
+	Point on shape: (171.48 661.88)  Net: GND
