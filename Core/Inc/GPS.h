@@ -13,7 +13,7 @@
 //defines
 #define BUFFLENGTH 700
 //variables
-char rxBuf[BUFFLENGTH];
+extern char rxBuf[BUFFLENGTH];
 //functions
 int gps_msg_config(UART_HandleTypeDef *huart, const char *nema, int rus1);
 int gps_rate_config(UART_HandleTypeDef *huart, uint16_t measRate, uint16_t navRate, uint16_t timeRef);

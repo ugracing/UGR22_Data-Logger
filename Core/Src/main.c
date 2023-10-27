@@ -65,8 +65,20 @@ DMA_HandleTypeDef hdma_usart3_rx;
 
 /* USER CODE BEGIN PV */
 
-extern CAN_FRAME CanFrame;
-extern CAN_FD_FRAME CanFDFrame;
+FATFS myFATAFS;
+FIL myFILE;
+FIL Config;
+UINT ConfByteR;
+UINT ConfByteW;
+UINT testByte;
+
+char rxBuf[BUFFLENGTH];
+
+FDCAN_RxHeaderTypeDef RxHeader;
+ReadInstruction Configs[100]; //Arbitrarily set known packet limit to 100
+
+CAN_FRAME CanFrame;
+CAN_FD_FRAME CanFDFrame;
 
 
 /* USER CODE END PV */

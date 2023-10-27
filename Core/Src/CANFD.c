@@ -13,6 +13,7 @@
 
 int FDCAN_Flag = 0;
 int CAN_Flag = 0;
+uint8_t RxData[64];
 
 void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan){
 	FDCAN_FilterTypeDef sFilterConfig;

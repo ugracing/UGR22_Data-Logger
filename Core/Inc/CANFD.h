@@ -20,13 +20,13 @@ typedef struct{
 	char Intsructions[128];
 }ReadInstruction;
 
-FDCAN_RxHeaderTypeDef RxHeader;
+extern FDCAN_RxHeaderTypeDef RxHeader;
 //variables
 
-ReadInstruction Configs[100]; //Arbitrarily set known packet limit to 100
-CAN_FRAME CanFrame;
-CAN_FD_FRAME CanFDFrame;
-uint8_t RxData[64];
+extern ReadInstruction Configs[100]; //Arbitrarily set known packet limit to 100
+extern CAN_FRAME CanFrame;
+extern CAN_FD_FRAME CanFDFrame;
+
 
 //functions
 void FDCAN_Config(FDCAN_HandleTypeDef *hfdcan);

@@ -10,11 +10,11 @@
 
 #include "fatfs.h"
 
-FATFS myFATAFS;
-FIL myFILE;
-FIL Config;
-UINT ConfByteR;
-UINT ConfByteW;
-UINT testByte;
+extern FATFS myFATAFS;
+extern FIL myFILE;
+extern FIL Config;
+extern UINT ConfByteR;
+extern UINT ConfByteW;
+extern UINT testByte;
 
 #endif /* INC_MYFATFS_H_ */
