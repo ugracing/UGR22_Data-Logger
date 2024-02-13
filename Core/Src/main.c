@@ -445,7 +445,7 @@ int main(void)
 
 		  RTC_TimeTypeDef lTime = sTime;
 		  LocalTime = CanFDFrame.time;
-		  lTime.SubSeconds += LocalTime % 1000;
+		  uint32_t milliseconds = LocalTime % 1000;
 		  LocalTime = LocalTime/1000;
 		  lTime.Seconds += LocalTime % 60;
 		  if(lTime.Seconds >= 60){
@@ -463,7 +463,7 @@ int main(void)
       //Write to SD Card
 		  //date/time, CANID, Data
 		  CFDW = sprintf(CanFDWrite, "%u.%u.%u %u:%u:%u.%u,0x%X,",
-				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,lTime.SubSeconds,
+				  sDate.Date,sDate.Month,sDate.Year, lTime.Hours,lTime.Minutes,lTime.Seconds,milliseconds,
 				  CanFDFrame.id);
 
 		  CFDW = CANFD_Data_Process(CanFDWrite, CFDW);
